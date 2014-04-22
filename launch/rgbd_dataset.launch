@@ -23,9 +23,4 @@
         <remap from="rgb/image_rect_color"        to="camera/rgb/image_color" />
         <remap from="rgb/camera_info"             to="camera/rgb/camera_info" />
     </node>
-
-    <!--*******************************        Visualization        *******************************-->
-
-    <include file="$(find lara_rgbd)/launch/visualization.launch" />
-
 </launch>

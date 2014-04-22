@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find lara_rgbd)/launch/rgbd_dataset.launch" />
+    <include file="$(find lara_rgbd)/launch/sensor_processor.launch" />
+    <include file="$(find lara_rgbd)/launch/visualization.launch" />
+</launch>

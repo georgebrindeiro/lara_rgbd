@@ -87,8 +87,8 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-#add_executable(hs_sensor_processor src/SensorProcessor/SensorProcessor.cpp)
-#target_link_libraries(hs_sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+add_executable(sensor_processor src/sensor_processor/sensor_processor_node.cpp)
+target_link_libraries(sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #add_executable(hs_map_manager src/MapManager/MapManager.cpp)
 #target_link_libraries(hs_map_manager ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})

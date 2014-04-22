@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="lara_rgbd" type="sensor_processor" name="sensor_processor" output="screen">
+        <remap from="odometry"     to="pose" />
+        <remap from="kinect_cloud" to="camera/depth_registered/points" />
+    </node>
+</launch>
