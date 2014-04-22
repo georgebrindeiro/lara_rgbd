@@ -1,5 +1,5 @@
 <launch>
-    <!--*******************************       LARA RGB-D SLAM       *******************************-->  
+    <!--*******************************        RGB-D Dataset        *******************************-->  
 
     <!--*******************************         Arguments           *******************************-->
 
@@ -9,7 +9,7 @@
     <!--<arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_slam2.bag" />-->
     <!--<arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_slam3.bag" />-->
 
-    <!--*******************************        RGB-D Dataset        *******************************-->
+    <!--*******************************           Nodes             *******************************-->
 
     <!-- Load chosen dataset -->
     <node pkg="rosbag" type="play" name="rosbag_playback" args="--clock $(find lara_rgbd)/data/$(arg playback_rosbag)" />
@@ -23,4 +23,5 @@
         <remap from="rgb/image_rect_color"        to="camera/rgb/image_color" />
         <remap from="rgb/camera_info"             to="camera/rgb/camera_info" />
     </node>
+
 </launch>
