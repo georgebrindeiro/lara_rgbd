@@ -1,0 +1,7 @@
+<launch>
+
+    <!-- Visualization in rviz -->
+	<node pkg="rviz" type="rviz" name="rviz" 
+	      args="-d $(find lara_rgbd)/launch/settings.rviz"/>
+
+</launch>

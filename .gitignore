@@ -2,20 +2,21 @@
 *.slo
 *.lo
 *.o
-*.obj
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Compiled Static libraries
 *.lai
 *.la
 *.a
-*.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# Bag files and datasets
+/data/rgbd_dataset/datasets/*
+
+# Stuff that isn't ready yet
+
+
+/docs/CMakeLists.txt
+/docs/Doxyfile.in

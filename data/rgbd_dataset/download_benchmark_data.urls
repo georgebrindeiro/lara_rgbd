@@ -1,0 +1,61 @@
+# use this file with wget: "wget -i <thisfile>" to download required benchmark data
+
+# Category: Testing and Debugging #
+
+## tgz files ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_rpy.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_xyz.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_rpy.tgz
+
+## bag files ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_rpy.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_xyz.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_rpy.bag
+
+## ground truth ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_rpy-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_xyz-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_rpy-groundtruth.txt
+
+## external videos ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_rpy-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_xyz-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_rpy-external.avi
+
+# Category: Robot SLAM #
+
+## tgz files ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_360.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam2.tgz
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam3.tgz
+
+## bag files ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_360.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam2.bag
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam3.bag
+
+## ground truth ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_360-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam2-groundtruth.txt
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam3-groundtruth.txt
+
+## external videos ##
+
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_360-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam2-external.avi
+http://vision.in.tum.de/rgbd/dataset/freiburg2/rgbd_dataset_freiburg2_pioneer_slam3-external.avi

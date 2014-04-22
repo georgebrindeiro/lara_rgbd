@@ -1,0 +1,31 @@
+<launch>
+    <!--*******************************       LARA RGB-D SLAM       *******************************-->  
+
+    <!--*******************************         Arguments           *******************************-->
+
+    <!-- If playback, what bag file are we using? -->
+    <arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_360.bag" />
+    <!--<arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_slam.bag" />-->
+    <!--<arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_slam2.bag" />-->
+    <!--<arg name="playback_rosbag" default="rgbd_dataset/datasets/rgbd_dataset_freiburg2_pioneer_slam3.bag" />-->
+
+    <!--*******************************        RGB-D Dataset        *******************************-->
+
+    <!-- Load chosen dataset -->
+    <node pkg="rosbag" type="play" name="rosbag_playback" args="--clock $(find lara_rgbd)/data/$(arg playback_rosbag)" />
+
+    <!-- Convert depth images to point clouds -->
+    <node pkg="nodelet" type="nodelet" args="manager" name="depth_image_proc_nodelet_manager" output="screen" />
+
+    <node pkg="nodelet" type="nodelet" name="cloudify" args="load depth_image_proc/point_cloud_xyzrgb depth_image_proc_nodelet_manager --no-bond">
+        <remap from="depth_registered/image_rect" to="camera/depth/image" />
+        <remap from="depth_registered/points"     to="camera/depth_registered/points" />
+        <remap from="rgb/image_rect_color"        to="camera/rgb/image_color" />
+        <remap from="rgb/camera_info"             to="camera/rgb/camera_info" />
+    </node>
+
+    <!--*******************************        Visualization        *******************************-->
+
+    <include file="$(find lara_rgbd)/launch/visualization.launch" />
+
+</launch>
