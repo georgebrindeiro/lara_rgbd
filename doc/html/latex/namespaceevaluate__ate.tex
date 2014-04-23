@@ -1,0 +1,206 @@
+\section{evaluate\-\_\-ate \-Namespace \-Reference}
+\label{namespaceevaluate__ate}\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf align}
+\item 
+def {\bf plot\-\_\-traj}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf args} = parser.\-parse\-\_\-args()
+\item 
+tuple {\bf ax} = fig.\-add\-\_\-subplot(111)
+\item 
+tuple {\bf fig} = plt.\-figure()
+\item 
+tuple {\bf file} = open(args.\-save\-\_\-associations,\char`\"{}w\char`\"{})
+\item 
+tuple {\bf first\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-first\-\_\-file)
+\item 
+tuple {\bf first\-\_\-stamps} = first\-\_\-list.\-keys()
+\item 
+tuple {\bf first\-\_\-xyz} = numpy.\-matrix([[float(value) for value in {\bf first\-\_\-list}[a][0\-:3]] for a,b in {\bf matches}])
+\item 
+tuple {\bf first\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value) for value in {\bf first\-\_\-list}[b][0\-:3]] for b in {\bf first\-\_\-stamps}])
+\item 
+string {\bf label} = \char`\"{}difference\char`\"{}
+\item 
+tuple {\bf matches} = {\bf associate.\-associate}({\bf first\-\_\-list}, {\bf second\-\_\-list},float(args.\-offset),float(args.\-max\-\_\-difference))
+\item 
+tuple {\bf parser}
+\item 
+tuple {\bf second\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-second\-\_\-file)
+\item 
+tuple {\bf second\-\_\-stamps} = second\-\_\-list.\-keys()
+\item 
+tuple {\bf second\-\_\-xyz} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in {\bf second\-\_\-list}[b][0\-:3]] for a,b in {\bf matches}])
+\item 
+{\bf second\-\_\-xyz\-\_\-aligned} = rot$\ast${\bf second\-\_\-xyz}+trans
+\item 
+tuple {\bf second\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in {\bf second\-\_\-list}[b][0\-:3]] for b in {\bf second\-\_\-stamps}])
+\item 
+{\bf second\-\_\-xyz\-\_\-full\-\_\-aligned} = rot$\ast${\bf second\-\_\-xyz\-\_\-full}+trans
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!align@{align}}
+\index{align@{align}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{align}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-ate.\-align} (
+\begin{DoxyParamCaption}
+\item[{}]{model, }
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__ate_a4491e7567e454fc591e000b9ea2625b6}
+
+
+\-Definition at line 11 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!plot\-\_\-traj@{plot\-\_\-traj}}
+\index{plot\-\_\-traj@{plot\-\_\-traj}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{plot\-\_\-traj}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-ate.\-plot\-\_\-traj} (
+\begin{DoxyParamCaption}
+\item[{}]{ax, }
+\item[{}]{stamps, }
+\item[{}]{traj, }
+\item[{}]{style, }
+\item[{}]{color, }
+\item[{}]{label}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__ate_af896fd7009b8e730126f40e38d65cdaf}
+
+
+\-Definition at line 33 of file evaluate\-\_\-ate.\-py.
+
+
+
+\subsection{\-Variable \-Documentation}
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!args@{args}}
+\index{args@{args}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{args}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::args} = parser.\-parse\-\_\-args()}\label{namespaceevaluate__ate_ae34ccc729ed3df368eb7e00b79432f54}
+
+
+\-Definition at line 67 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!ax@{ax}}
+\index{ax@{ax}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{ax}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::ax} = fig.\-add\-\_\-subplot(111)}\label{namespaceevaluate__ate_a8b4631f6686c05a943d71be14d1e531b}
+
+
+\-Definition at line 121 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!fig@{fig}}
+\index{fig@{fig}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{fig}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::fig} = plt.\-figure()}\label{namespaceevaluate__ate_a40c0f2ea815bd39eae67b933ae0e019c}
+
+
+\-Definition at line 120 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!file@{file}}
+\index{file@{file}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{file}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::file} = open(args.\-save\-\_\-associations,\char`\"{}w\char`\"{})}\label{namespaceevaluate__ate_a0888e5579627e46d6a6ec883c8dd0c3f}
+
+
+\-Definition at line 105 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!first\-\_\-list@{first\-\_\-list}}
+\index{first\-\_\-list@{first\-\_\-list}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{first\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::first\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-first\-\_\-file)}\label{namespaceevaluate__ate_ae79d1aeba92c80abc944e9a21ff48ae0}
+
+
+\-Definition at line 69 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!first\-\_\-stamps@{first\-\_\-stamps}}
+\index{first\-\_\-stamps@{first\-\_\-stamps}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{first\-\_\-stamps}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::first\-\_\-stamps} = first\-\_\-list.\-keys()}\label{namespaceevaluate__ate_a3cf492f1cea1f729470b37f5f62a98a9}
+
+
+\-Definition at line 83 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!first\-\_\-xyz@{first\-\_\-xyz}}
+\index{first\-\_\-xyz@{first\-\_\-xyz}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{first\-\_\-xyz}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::first\-\_\-xyz} = numpy.\-matrix([[float(value) for value in {\bf first\-\_\-list}[a][0\-:3]] for a,b in {\bf matches}])}\label{namespaceevaluate__ate_af9acc793f205ea1d6f48ac11128ce581}
+
+
+\-Definition at line 77 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!first\-\_\-xyz\-\_\-full@{first\-\_\-xyz\-\_\-full}}
+\index{first\-\_\-xyz\-\_\-full@{first\-\_\-xyz\-\_\-full}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{first\-\_\-xyz\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::first\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value) for value in {\bf first\-\_\-list}[b][0\-:3]] for b in {\bf first\-\_\-stamps}])}\label{namespaceevaluate__ate_a965b6e55646f6ad712bc790249632b90}
+
+
+\-Definition at line 85 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!label@{label}}
+\index{label@{label}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{label}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf evaluate\-\_\-ate\-::label} = \char`\"{}difference\char`\"{}}\label{namespaceevaluate__ate_aef6c3dcd3a519081b360b7061a72e7b7}
+
+
+\-Definition at line 125 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!matches@{matches}}
+\index{matches@{matches}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{matches}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::matches} = {\bf associate.\-associate}({\bf first\-\_\-list}, {\bf second\-\_\-list},float(args.\-offset),float(args.\-max\-\_\-difference))}\label{namespaceevaluate__ate_a8abec59b0a13ae62dcd1bf69aa8d1817}
+
+
+\-Definition at line 72 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!parser@{parser}}
+\index{parser@{parser}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{parser}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::parser}}\label{namespaceevaluate__ate_ab3abe602c35db92d713f272abb2a5112}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+1 argparse.ArgumentParser(description='''
+2     This script computes the absolute trajectory error from the ground truth
+       trajectory and the estimated trajectory. 
+3     ''')
+\end{DoxyCode}
+
+
+\-Definition at line 55 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-list@{second\-\_\-list}}
+\index{second\-\_\-list@{second\-\_\-list}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::second\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-second\-\_\-file)}\label{namespaceevaluate__ate_a0a642c69e81739470ed6c06b1c6946a7}
+
+
+\-Definition at line 70 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-stamps@{second\-\_\-stamps}}
+\index{second\-\_\-stamps@{second\-\_\-stamps}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-stamps}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::second\-\_\-stamps} = second\-\_\-list.\-keys()}\label{namespaceevaluate__ate_a9328afffda3037f7146b7b2e496f8772}
+
+
+\-Definition at line 87 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-xyz@{second\-\_\-xyz}}
+\index{second\-\_\-xyz@{second\-\_\-xyz}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-xyz}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::second\-\_\-xyz} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in {\bf second\-\_\-list}[b][0\-:3]] for a,b in {\bf matches}])}\label{namespaceevaluate__ate_a037306d05b990450a719aba591c16776}
+
+
+\-Definition at line 78 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-xyz\-\_\-aligned@{second\-\_\-xyz\-\_\-aligned}}
+\index{second\-\_\-xyz\-\_\-aligned@{second\-\_\-xyz\-\_\-aligned}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-xyz\-\_\-aligned}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evaluate\-\_\-ate\-::second\-\_\-xyz\-\_\-aligned} = rot$\ast${\bf second\-\_\-xyz}+trans}\label{namespaceevaluate__ate_a6b2972db49ee6dcacf0fcebd3d967155}
+
+
+\-Definition at line 81 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-xyz\-\_\-full@{second\-\_\-xyz\-\_\-full}}
+\index{second\-\_\-xyz\-\_\-full@{second\-\_\-xyz\-\_\-full}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-xyz\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-ate\-::second\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in {\bf second\-\_\-list}[b][0\-:3]] for b in {\bf second\-\_\-stamps}])}\label{namespaceevaluate__ate_aed5ec8dd2d4f77467d10c74b6e2c9112}
+
+
+\-Definition at line 89 of file evaluate\-\_\-ate.\-py.
+
+\index{evaluate\-\_\-ate@{evaluate\-\_\-ate}!second\-\_\-xyz\-\_\-full\-\_\-aligned@{second\-\_\-xyz\-\_\-full\-\_\-aligned}}
+\index{second\-\_\-xyz\-\_\-full\-\_\-aligned@{second\-\_\-xyz\-\_\-full\-\_\-aligned}!evaluate_ate@{evaluate\-\_\-ate}}
+\subsubsection[{second\-\_\-xyz\-\_\-full\-\_\-aligned}]{\setlength{\rightskip}{0pt plus 5cm}{\bf evaluate\-\_\-ate\-::second\-\_\-xyz\-\_\-full\-\_\-aligned} = rot$\ast${\bf second\-\_\-xyz\-\_\-full}+trans}\label{namespaceevaluate__ate_ac263578681ea7489e16b1e4810b22428}
+
+
+\-Definition at line 90 of file evaluate\-\_\-ate.\-py.
+

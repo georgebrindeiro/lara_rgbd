@@ -1,0 +1,95 @@
+\section{sensor\-\_\-processor\-\_\-node.\-cpp \-File \-Reference}
+\label{sensor__processor__node_8cpp}\index{sensor\-\_\-processor\-\_\-node.\-cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}}
+
+
+\-R\-O\-S node used to process raw sensor data.  
+
+
+{\ttfamily \#include $<$ros/ros.\-h$>$}\*
+{\ttfamily \#include $<$sensor\-\_\-processor/sensor\-\_\-processor\-\_\-node.\-h$>$}\*
+\-Include dependency graph for sensor\-\_\-processor\-\_\-node.\-cpp\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__processor__node_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf cloud\-\_\-cb} (const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg)
+\item 
+int {\bf main} (int argc, char $\ast$$\ast$argv)
+\item 
+void {\bf odom\-\_\-cb} (const nav\-\_\-msgs\-::\-Odometry\-::\-Const\-Ptr \&odom\-\_\-msg)
+\item 
+void {\bf print\-\_\-cloud\-\_\-msg} (const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-R\-O\-S node used to process raw sensor data. \begin{DoxyAuthor}{\-Author}
+\-George \-Andrew \-Brindeiro ({\tt georgebrindeiro@lara.\-unb.\-br}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{\-Date}
+\-Apr 22, 2014
+\end{DoxyDate}
+\begin{DoxyAttention}{\-Attention}
+\-Copyright (\-C) 2014 
+
+\-Laboratório de \-Automação e \-Robótica (\-L\-A\-R\-A) 
+
+\-Universidade de \-Brasília (\-Un\-B)
+\end{DoxyAttention}
+\-This \-R\-O\-S node receives both the \-R\-G\-B-\/\-D point cloud from the \-Kinect and the odometry info from the \-Pioneer 
+
+\-Definition in file {\bf sensor\-\_\-processor\-\_\-node.\-cpp}.
+
+
+
+\subsection{\-Function \-Documentation}
+\index{sensor\-\_\-processor\-\_\-node.\-cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}!cloud\-\_\-cb@{cloud\-\_\-cb}}
+\index{cloud\-\_\-cb@{cloud\-\_\-cb}!sensor_processor_node.cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}}
+\subsubsection[{cloud\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf cloud\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8cpp_a8da8b203137bb48b721ecfe07b875628}
+
+
+\-Definition at line 42 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+\index{sensor\-\_\-processor\-\_\-node.\-cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}!main@{main}}
+\index{main@{main}!sensor_processor_node.cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+\-Definition at line 19 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+\index{sensor\-\_\-processor\-\_\-node.\-cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}!odom\-\_\-cb@{odom\-\_\-cb}}
+\index{odom\-\_\-cb@{odom\-\_\-cb}!sensor_processor_node.cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}}
+\subsubsection[{odom\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf odom\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{const nav\-\_\-msgs\-::\-Odometry\-::\-Const\-Ptr \&}]{odom\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8cpp_a3ac36cf31bca91aacd880b33c5ec9290}
+
+
+\-Definition at line 91 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+\index{sensor\-\_\-processor\-\_\-node.\-cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}!print\-\_\-cloud\-\_\-msg@{print\-\_\-cloud\-\_\-msg}}
+\index{print\-\_\-cloud\-\_\-msg@{print\-\_\-cloud\-\_\-msg}!sensor_processor_node.cpp@{sensor\-\_\-processor\-\_\-node.\-cpp}}
+\subsubsection[{print\-\_\-cloud\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-\_\-cloud\-\_\-msg} (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8cpp_ac0932d98594119cb7d7388d4c707c8d7}
+
+
+\-Definition at line 63 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+

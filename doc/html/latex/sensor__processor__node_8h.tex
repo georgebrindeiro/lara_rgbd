@@ -1,0 +1,117 @@
+\section{sensor\-\_\-processor\-\_\-node.\-h \-File \-Reference}
+\label{sensor__processor__node_8h}\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}}
+{\ttfamily \#include $<$sensor\-\_\-processor/sensor\-\_\-processor.\-h$>$}\*
+{\ttfamily \#include $<$geometry\-\_\-msgs/\-Pose\-With\-Covariance\-Stamped.\-h$>$}\*
+{\ttfamily \#include $<$nav\-\_\-msgs/\-Odometry.\-h$>$}\*
+\-Include dependency graph for sensor\-\_\-processor\-\_\-node.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__processor__node_8h__incl}
+\end{center}
+\end{figure}
+\-This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{sensor__processor__node_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf cloud\-\_\-cb} (const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg)
+\item 
+void {\bf odom\-\_\-cb} (const nav\-\_\-msgs\-::\-Odometry\-::\-Const\-Ptr \&odom\-\_\-msg)
+\item 
+void {\bf print\-\_\-cloud\-\_\-msg} (const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\-::\-Publisher {\bf pub\-\_\-cloud}
+\item 
+ros\-::\-Publisher {\bf pub\-\_\-pose}
+\item 
+{\bf \-Sensor\-Processor} $\ast$ {\bf sensor\-\_\-processor}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\begin{DoxyAuthor}{\-Author}
+\-George \-Andrew \-Brindeiro ({\tt georgebrindeiro@lara.\-unb.\-br}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{\-Date}
+\-Apr 22, 2014
+\end{DoxyDate}
+\begin{DoxyAttention}{\-Attention}
+\-Copyright (\-C) 2014 
+
+\-Laboratório de \-Automação e \-Robótica (\-L\-A\-R\-A) 
+
+\-Universidade de \-Brasília (\-Un\-B) 
+\end{DoxyAttention}
+
+
+\-Definition in file {\bf sensor\-\_\-processor\-\_\-node.\-h}.
+
+
+
+\subsection{\-Function \-Documentation}
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!cloud\-\_\-cb@{cloud\-\_\-cb}}
+\index{cloud\-\_\-cb@{cloud\-\_\-cb}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{cloud\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf cloud\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8h_a8da8b203137bb48b721ecfe07b875628}
+
+
+\-Definition at line 42 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!odom\-\_\-cb@{odom\-\_\-cb}}
+\index{odom\-\_\-cb@{odom\-\_\-cb}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{odom\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf odom\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{const nav\-\_\-msgs\-::\-Odometry\-::\-Const\-Ptr \&}]{odom\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8h_a3ac36cf31bca91aacd880b33c5ec9290}
+
+
+\-Definition at line 91 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!print\-\_\-cloud\-\_\-msg@{print\-\_\-cloud\-\_\-msg}}
+\index{print\-\_\-cloud\-\_\-msg@{print\-\_\-cloud\-\_\-msg}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{print\-\_\-cloud\-\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-\_\-cloud\-\_\-msg} (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{sensor__processor__node_8h_ac0932d98594119cb7d7388d4c707c8d7}
+
+
+\-Definition at line 63 of file sensor\-\_\-processor\-\_\-node.\-cpp.
+
+
+
+\subsection{\-Variable \-Documentation}
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!pub\-\_\-cloud@{pub\-\_\-cloud}}
+\index{pub\-\_\-cloud@{pub\-\_\-cloud}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{pub\-\_\-cloud}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Publisher {\bf pub\-\_\-cloud}}\label{sensor__processor__node_8h_a6600fdbe96f8c1420ee414ba41c90027}
+
+
+\-Definition at line 19 of file sensor\-\_\-processor\-\_\-node.\-h.
+
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!pub\-\_\-pose@{pub\-\_\-pose}}
+\index{pub\-\_\-pose@{pub\-\_\-pose}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{pub\-\_\-pose}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Publisher {\bf pub\-\_\-pose}}\label{sensor__processor__node_8h_a1a081b07689cdd9efdbb2a06f698ec48}
+
+
+\-Definition at line 29 of file sensor\-\_\-processor\-\_\-node.\-h.
+
+\index{sensor\-\_\-processor\-\_\-node.\-h@{sensor\-\_\-processor\-\_\-node.\-h}!sensor\-\_\-processor@{sensor\-\_\-processor}}
+\index{sensor\-\_\-processor@{sensor\-\_\-processor}!sensor_processor_node.h@{sensor\-\_\-processor\-\_\-node.\-h}}
+\subsubsection[{sensor\-\_\-processor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Sensor\-Processor}$\ast$ {\bf sensor\-\_\-processor}}\label{sensor__processor__node_8h_a1183caf02d6ec81cc2845ec1c58bd606}
+
+
+\-Definition at line 21 of file sensor\-\_\-processor\-\_\-node.\-h.
+

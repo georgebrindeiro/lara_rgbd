@@ -1,0 +1,57 @@
+\section{generate\-\_\-registered\-\_\-pointcloud.\-py \-File \-Reference}
+\label{generate__registered__pointcloud_8py}\index{generate\-\_\-registered\-\_\-pointcloud.\-py@{generate\-\_\-registered\-\_\-pointcloud.\-py}}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf generate\-\_\-registered\-\_\-pointcloud}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf generate\-\_\-registered\-\_\-pointcloud.\-generate\-\_\-pointcloud}
+\item 
+def {\bf generate\-\_\-registered\-\_\-pointcloud.\-write\-\_\-pcd}
+\item 
+def {\bf generate\-\_\-registered\-\_\-pointcloud.\-write\-\_\-ply}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+list {\bf generate\-\_\-registered\-\_\-pointcloud.\-all\-\_\-points} = [$\,$]
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-args} = parser.\-parse\-\_\-args()
+\item 
+float {\bf generate\-\_\-registered\-\_\-pointcloud.\-center\-X} = 319.\-5
+\item 
+float {\bf generate\-\_\-registered\-\_\-pointcloud.\-center\-Y} = 239.\-5
+\item 
+list {\bf generate\-\_\-registered\-\_\-pointcloud.\-depth\-\_\-file} = depth\-\_\-list[matches\-\_\-rgb\-\_\-depth[rgb\-\_\-stamp]]
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-depth\-\_\-list} = read\-\_\-file\-\_\-list(args.\-depth\-\_\-list)
+\item 
+float {\bf generate\-\_\-registered\-\_\-pointcloud.\-focal\-Length} = 525.\-0
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-list} = range(0,len(matches\-\_\-rgb\-\_\-traj),int(args.\-nth))
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-matches\-\_\-rgb\-\_\-depth} = dict(associate(rgb\-\_\-list, depth\-\_\-list,float(args.\-depth\-\_\-offset),float(args.\-depth\-\_\-max\-\_\-difference)))
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-matches\-\_\-rgb\-\_\-traj} = associate(matches\-\_\-rgb\-\_\-depth, pose\-\_\-list,float(args.\-traj\-\_\-offset),float(args.\-traj\-\_\-max\-\_\-difference))
+\item 
+string {\bf generate\-\_\-registered\-\_\-pointcloud.\-out\-\_\-filename} = \char`\"{}\%s-\/\%f.\-pcd\char`\"{}
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-parser}
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-points} = generate\-\_\-pointcloud(rgb\-\_\-file,depth\-\_\-file,pose,int(args.\-downsample), args.\-pcd\-\_\-format)
+\item 
+list {\bf generate\-\_\-registered\-\_\-pointcloud.\-pose} = traj[traj\-\_\-stamp]
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-pose\-\_\-list} = read\-\_\-file\-\_\-list(args.\-trajectory\-\_\-file)
+\item 
+list {\bf generate\-\_\-registered\-\_\-pointcloud.\-rgb\-\_\-file} = rgb\-\_\-list[rgb\-\_\-stamp]
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-rgb\-\_\-list} = read\-\_\-file\-\_\-list(args.\-rgb\-\_\-list)
+\item 
+float {\bf generate\-\_\-registered\-\_\-pointcloud.\-scaling\-Factor} = 5000.\-0
+\item 
+tuple {\bf generate\-\_\-registered\-\_\-pointcloud.\-traj} = read\-\_\-trajectory(args.\-trajectory\-\_\-file, \-False)
+\end{DoxyCompactItemize}

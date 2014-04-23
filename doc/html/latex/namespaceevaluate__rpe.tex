@@ -1,0 +1,296 @@
+\section{evaluate\-\_\-rpe \-Namespace \-Reference}
+\label{namespaceevaluate__rpe}\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf compute\-\_\-angle}
+\item 
+def {\bf compute\-\_\-distance}
+\item 
+def {\bf distances\-\_\-along\-\_\-trajectory}
+\item 
+def {\bf evaluate\-\_\-trajectory}
+\item 
+def {\bf find\-\_\-closest\-\_\-index}
+\item 
+def {\bf ominus}
+\item 
+def {\bf percentile}
+\item 
+def {\bf read\-\_\-trajectory}
+\item 
+def {\bf rotations\-\_\-along\-\_\-trajectory}
+\item 
+def {\bf scale}
+\item 
+def {\bf transform44}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf \-\_\-\-E\-P\-S} = numpy.\-finfo(float)
+\item 
+tuple {\bf args} = parser.\-parse\-\_\-args()
+\item 
+tuple {\bf ax} = fig.\-add\-\_\-subplot(111)
+\item 
+tuple {\bf f} = open(args.\-save,\char`\"{}w\char`\"{})
+\item 
+tuple {\bf fig} = plt.\-figure()
+\item 
+tuple {\bf parser}
+\item 
+tuple {\bf result}
+\item 
+tuple {\bf rot\-\_\-error} = numpy.\-array({\bf result})
+\item 
+tuple {\bf stamps} = numpy.\-array({\bf result})
+\item 
+tuple {\bf traj\-\_\-est} = {\bf read\-\_\-trajectory}(args.\-estimated\-\_\-file)
+\item 
+tuple {\bf traj\-\_\-gt} = {\bf read\-\_\-trajectory}(args.\-groundtruth\-\_\-file)
+\item 
+tuple {\bf trans\-\_\-error} = numpy.\-array({\bf result})
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!compute\-\_\-angle@{compute\-\_\-angle}}
+\index{compute\-\_\-angle@{compute\-\_\-angle}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{compute\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-compute\-\_\-angle} (
+\begin{DoxyParamCaption}
+\item[{}]{transform}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a30aca29d159f5dd8e752eeaa4044a5f2}
+
+
+\-Definition at line 86 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!compute\-\_\-distance@{compute\-\_\-distance}}
+\index{compute\-\_\-distance@{compute\-\_\-distance}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{compute\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-compute\-\_\-distance} (
+\begin{DoxyParamCaption}
+\item[{}]{transform}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_ae9bb8e1fb57156f331d1c9e487960f07}
+
+
+\-Definition at line 83 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!distances\-\_\-along\-\_\-trajectory@{distances\-\_\-along\-\_\-trajectory}}
+\index{distances\-\_\-along\-\_\-trajectory@{distances\-\_\-along\-\_\-trajectory}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{distances\-\_\-along\-\_\-trajectory}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-distances\-\_\-along\-\_\-trajectory} (
+\begin{DoxyParamCaption}
+\item[{}]{traj}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a7c07ec370c481a7257f93e84701795e9}
+
+
+\-Definition at line 90 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!evaluate\-\_\-trajectory@{evaluate\-\_\-trajectory}}
+\index{evaluate\-\_\-trajectory@{evaluate\-\_\-trajectory}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{evaluate\-\_\-trajectory}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-evaluate\-\_\-trajectory} (
+\begin{DoxyParamCaption}
+\item[{}]{traj\-\_\-gt, }
+\item[{}]{traj\-\_\-est, }
+\item[{}]{param\-\_\-max\-\_\-pairs = {\ttfamily 10000}, }
+\item[{}]{param\-\_\-fixed\-\_\-delta = {\ttfamily \-False}, }
+\item[{}]{param\-\_\-delta = {\ttfamily 1.00}, }
+\item[{}]{param\-\_\-delta\-\_\-unit = {\ttfamily \char`\"{}s\char`\"{}}, }
+\item[{}]{param\-\_\-offset = {\ttfamily 0.00}, }
+\item[{}]{param\-\_\-scale = {\ttfamily 1.00}}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a8f86ada4c8601d2ee8511fef28455af8}
+
+
+\-Definition at line 113 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!find\-\_\-closest\-\_\-index@{find\-\_\-closest\-\_\-index}}
+\index{find\-\_\-closest\-\_\-index@{find\-\_\-closest\-\_\-index}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{find\-\_\-closest\-\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-find\-\_\-closest\-\_\-index} (
+\begin{DoxyParamCaption}
+\item[{}]{\-L, }
+\item[{}]{t}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a417ab4ce2cee5f07146d93e9e5eb0cd2}
+
+
+\-Definition at line 54 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!ominus@{ominus}}
+\index{ominus@{ominus}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{ominus}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-ominus} (
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a7183e2ecbad3bf32a6788d3fdad139b1}
+
+
+\-Definition at line 72 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!percentile@{percentile}}
+\index{percentile@{percentile}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{percentile}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-percentile} (
+\begin{DoxyParamCaption}
+\item[{}]{seq, }
+\item[{}]{q}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a1704160de0b882145e27dc3ece4c1325}
+
+
+\-Definition at line 186 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!read\-\_\-trajectory@{read\-\_\-trajectory}}
+\index{read\-\_\-trajectory@{read\-\_\-trajectory}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{read\-\_\-trajectory}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-read\-\_\-trajectory} (
+\begin{DoxyParamCaption}
+\item[{}]{filename, }
+\item[{}]{matrix = {\ttfamily \-True}}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_ab83a4ad6c2bb23eb848257400e3af2de}
+
+
+\-Definition at line 30 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!rotations\-\_\-along\-\_\-trajectory@{rotations\-\_\-along\-\_\-trajectory}}
+\index{rotations\-\_\-along\-\_\-trajectory@{rotations\-\_\-along\-\_\-trajectory}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{rotations\-\_\-along\-\_\-trajectory}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-rotations\-\_\-along\-\_\-trajectory} (
+\begin{DoxyParamCaption}
+\item[{}]{traj, }
+\item[{}]{scale}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a89859a4c6fe7610ee83e953429fe3f26}
+
+
+\-Definition at line 101 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!scale@{scale}}
+\index{scale@{scale}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-scale} (
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{scalar}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_abd2f8c5cc1b50325a3d341427897f1cc}
+
+
+\-Definition at line 75 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!transform44@{transform44}}
+\index{transform44@{transform44}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{transform44}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf evaluate\-\_\-rpe.\-transform44} (
+\begin{DoxyParamCaption}
+\item[{}]{l}
+\end{DoxyParamCaption}
+)}\label{namespaceevaluate__rpe_a4d361c484e4fdee9680eb51fe356c21f}
+
+
+\-Definition at line 10 of file evaluate\-\_\-rpe.\-py.
+
+
+
+\subsection{\-Variable \-Documentation}
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!\-\_\-\-E\-P\-S@{\-\_\-\-E\-P\-S}}
+\index{\-\_\-\-E\-P\-S@{\-\_\-\-E\-P\-S}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{\-\_\-\-E\-P\-S}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::\-\_\-\-E\-P\-S} = numpy.\-finfo(float)}\label{namespaceevaluate__rpe_ae2f9a1d1fa0fc3e16409f219877d8f3f}
+
+
+\-Definition at line 8 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!args@{args}}
+\index{args@{args}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{args}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::args} = parser.\-parse\-\_\-args()}\label{namespaceevaluate__rpe_a56386c6923153a0b54fd0ad08f6f65c5}
+
+
+\-Definition at line 208 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!ax@{ax}}
+\index{ax@{ax}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{ax}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::ax} = fig.\-add\-\_\-subplot(111)}\label{namespaceevaluate__rpe_acec35b582c8cf510ceb59cf453886e5f}
+
+
+\-Definition at line 259 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!f@{f}}
+\index{f@{f}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::f} = open(args.\-save,\char`\"{}w\char`\"{})}\label{namespaceevaluate__rpe_ac861fec3070585727296cd81c3f2bfce}
+
+
+\-Definition at line 230 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!fig@{fig}}
+\index{fig@{fig}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{fig}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::fig} = plt.\-figure()}\label{namespaceevaluate__rpe_a83d8d36e0070f6ae0208a1c34e66aa5a}
+
+
+\-Definition at line 258 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!parser@{parser}}
+\index{parser@{parser}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{parser}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::parser}}\label{namespaceevaluate__rpe_a44b450933544c78d01461a6c21241ff4}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+1 argparse.ArgumentParser(description='''
+2     This script computes the relative pose error from the ground truth
+       trajectory and the estimated trajectory. 
+3     ''')
+\end{DoxyCode}
+
+
+\-Definition at line 194 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!result@{result}}
+\index{result@{result}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{result}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::result}}\label{namespaceevaluate__rpe_ab9508f475c7a0dbbf54aae3a3de416cd}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+1 evaluate_trajectory(traj_gt,
+2                                  traj_est,
+3                                  int(args.max_pairs),
+4                                  args.fixed_delta,
+5                                  float(args.delta),
+6                                  args.delta_unit,
+7                                  float(args.offset),
+8                                  float(args.scale))
+\end{DoxyCode}
+
+
+\-Definition at line 216 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!rot\-\_\-error@{rot\-\_\-error}}
+\index{rot\-\_\-error@{rot\-\_\-error}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{rot\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::rot\-\_\-error} = numpy.\-array({\bf result})}\label{namespaceevaluate__rpe_a6e6734ce44f0b67ec6abd7b97ceccde7}
+
+
+\-Definition at line 227 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!stamps@{stamps}}
+\index{stamps@{stamps}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{stamps}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::stamps} = numpy.\-array({\bf result})}\label{namespaceevaluate__rpe_ad2a6d660fb1694231301ffcc7fe4001c}
+
+
+\-Definition at line 225 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!traj\-\_\-est@{traj\-\_\-est}}
+\index{traj\-\_\-est@{traj\-\_\-est}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{traj\-\_\-est}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::traj\-\_\-est} = {\bf read\-\_\-trajectory}(args.\-estimated\-\_\-file)}\label{namespaceevaluate__rpe_a025671b200f5b7a0983a6514e9361922}
+
+
+\-Definition at line 214 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!traj\-\_\-gt@{traj\-\_\-gt}}
+\index{traj\-\_\-gt@{traj\-\_\-gt}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{traj\-\_\-gt}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::traj\-\_\-gt} = {\bf read\-\_\-trajectory}(args.\-groundtruth\-\_\-file)}\label{namespaceevaluate__rpe_ac91265aa37e1ddd09b73a62cbd87cff2}
+
+
+\-Definition at line 213 of file evaluate\-\_\-rpe.\-py.
+
+\index{evaluate\-\_\-rpe@{evaluate\-\_\-rpe}!trans\-\_\-error@{trans\-\_\-error}}
+\index{trans\-\_\-error@{trans\-\_\-error}!evaluate_rpe@{evaluate\-\_\-rpe}}
+\subsubsection[{trans\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf evaluate\-\_\-rpe\-::trans\-\_\-error} = numpy.\-array({\bf result})}\label{namespaceevaluate__rpe_a04edc68697ce323bd19a5d3ab23622dd}
+
+
+\-Definition at line 226 of file evaluate\-\_\-rpe.\-py.
+

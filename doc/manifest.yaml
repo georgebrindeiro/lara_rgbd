@@ -1,0 +1,20 @@
+authors: ''
+brief: ''
+bugtracker: ''
+depends:
+- catkin
+- roscpp
+- std_msgs
+- sensor_msgs
+- geometry_msgs
+- rospy
+- cv_bridge
+- pcl_ros
+description: The lara_rgbd package
+license: MIT
+maintainers: George Andrew Brindeiro <georgebrindeiro@lara.unb.br>
+msgs: []
+package_type: package
+repo_url: ''
+srvs: []
+url: ''

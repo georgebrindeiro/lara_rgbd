@@ -1,0 +1,51 @@
+\section{evaluate\-\_\-ate.\-py \-File \-Reference}
+\label{evaluate__ate_8py}\index{evaluate\-\_\-ate.\-py@{evaluate\-\_\-ate.\-py}}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf evaluate\-\_\-ate}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf evaluate\-\_\-ate.\-align}
+\item 
+def {\bf evaluate\-\_\-ate.\-plot\-\_\-traj}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf evaluate\-\_\-ate.\-args} = parser.\-parse\-\_\-args()
+\item 
+tuple {\bf evaluate\-\_\-ate.\-ax} = fig.\-add\-\_\-subplot(111)
+\item 
+tuple {\bf evaluate\-\_\-ate.\-fig} = plt.\-figure()
+\item 
+tuple {\bf evaluate\-\_\-ate.\-file} = open(args.\-save\-\_\-associations,\char`\"{}w\char`\"{})
+\item 
+tuple {\bf evaluate\-\_\-ate.\-first\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-first\-\_\-file)
+\item 
+tuple {\bf evaluate\-\_\-ate.\-first\-\_\-stamps} = first\-\_\-list.\-keys()
+\item 
+tuple {\bf evaluate\-\_\-ate.\-first\-\_\-xyz} = numpy.\-matrix([[float(value) for value in first\-\_\-list[a][0\-:3]] for a,b in matches])
+\item 
+tuple {\bf evaluate\-\_\-ate.\-first\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value) for value in first\-\_\-list[b][0\-:3]] for b in first\-\_\-stamps])
+\item 
+string {\bf evaluate\-\_\-ate.\-label} = \char`\"{}difference\char`\"{}
+\item 
+tuple {\bf evaluate\-\_\-ate.\-matches} = {\bf associate.\-associate}(first\-\_\-list, second\-\_\-list,float(args.\-offset),float(args.\-max\-\_\-difference))
+\item 
+tuple {\bf evaluate\-\_\-ate.\-parser}
+\item 
+tuple {\bf evaluate\-\_\-ate.\-second\-\_\-list} = {\bf associate.\-read\-\_\-file\-\_\-list}(args.\-second\-\_\-file)
+\item 
+tuple {\bf evaluate\-\_\-ate.\-second\-\_\-stamps} = second\-\_\-list.\-keys()
+\item 
+tuple {\bf evaluate\-\_\-ate.\-second\-\_\-xyz} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in second\-\_\-list[b][0\-:3]] for a,b in matches])
+\item 
+{\bf evaluate\-\_\-ate.\-second\-\_\-xyz\-\_\-aligned} = rot$\ast$second\-\_\-xyz+trans
+\item 
+tuple {\bf evaluate\-\_\-ate.\-second\-\_\-xyz\-\_\-full} = numpy.\-matrix([[float(value)$\ast$float(args.\-scale) for value in second\-\_\-list[b][0\-:3]] for b in second\-\_\-stamps])
+\item 
+{\bf evaluate\-\_\-ate.\-second\-\_\-xyz\-\_\-full\-\_\-aligned} = rot$\ast$second\-\_\-xyz\-\_\-full+trans
+\end{DoxyCompactItemize}

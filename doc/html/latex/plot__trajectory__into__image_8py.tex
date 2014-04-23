@@ -1,0 +1,53 @@
+\section{plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py \-File \-Reference}
+\label{plot__trajectory__into__image_8py}\index{plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py@{plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py}}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-point}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-args} = parser.\-parse\-\_\-args()
+\item 
+float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-center\-X} = 319.\-5
+\item 
+float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-center\-Y} = 239.\-5
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-draw} = \-Image\-Draw.\-Draw(image)
+\item 
+float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-focal\-Length} = 525.\-0
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-image} = \-Image.\-open(image\-\_\-file)
+\item 
+list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-image\-\_\-file} = image\-\_\-list[stamp]
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-image\-\_\-list} = read\-\_\-file\-\_\-list(args.\-image\-\_\-list)
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-matches} = associate(image\-\_\-list, pose\-\_\-list,0,0.\-02)
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-matches\-\_\-dict} = dict(matches)
+\item 
+list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-p} = traj[s]
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-parser}
+\item 
+list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-pose} = traj[matches\-\_\-dict[stamp]]
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-pose\-\_\-list} = read\-\_\-file\-\_\-list(args.\-trajectory\-\_\-file)
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-rel\-\_\-pose} = numpy.\-dot(numpy.\-linalg.\-inv(pose),p)
+\item 
+float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-size} = 0.\-01
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-stamps} = image\-\_\-list.\-keys()
+\item 
+tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-traj} = read\-\_\-trajectory(args.\-trajectory\-\_\-file)
+\item 
+list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-xy} = [$\,$]
+\end{DoxyCompactItemize}

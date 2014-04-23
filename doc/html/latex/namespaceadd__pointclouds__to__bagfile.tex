@@ -1,0 +1,324 @@
+\section{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile \-Namespace \-Reference}
+\label{namespaceadd__pointclouds__to__bagfile}\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf args} = parser.\-parse\-\_\-args()
+\item 
+tuple {\bf bridge} = \-Cv\-Bridge()
+\item 
+list {\bf buffer} = [$\,$]
+\item 
+list {\bf buffer\-\_\-rgb} = [$\,$]
+\item 
+list {\bf center\-X} = depth\-\_\-camera\-\_\-info.\-K[2]
+\item 
+list {\bf center\-Y} = depth\-\_\-camera\-\_\-info.\-K[5]
+\item 
+{\bf cortex} = \-None
+\item 
+tuple {\bf cv\-\_\-depth\-\_\-image} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf depth\-\_\-image}, \char`\"{}passthrough\char`\"{})
+\item 
+tuple {\bf cv\-\_\-rgb\-\_\-image\-\_\-color} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf rgb\-\_\-image\-\_\-color}, \char`\"{}bgr8\char`\"{})
+\item 
+tuple {\bf cv\-\_\-rgb\-\_\-image\-\_\-mono} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf rgb\-\_\-image\-\_\-color}, \char`\"{}mono8\char`\"{})
+\item 
+list {\bf d} = {\bf cv\-\_\-depth\-\_\-image}[v,u]
+\item 
+{\bf depth\-\_\-camera\-\_\-info} = \-None
+\item 
+{\bf depth\-\_\-image} = \-None
+\item 
+tuple {\bf depth\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()
+\item 
+list {\bf depth\-Focal\-Length} = depth\-\_\-camera\-\_\-info.\-K[0]
+\item 
+int {\bf frame} = 0
+\item 
+{\bf imu} = {\bf msg}
+\item 
+tuple {\bf inbag} = rosbag.\-Bag(args.\-inputbag,'r')
+\item 
+tuple {\bf msg} = tf.\-msg.\-tf\-Message()
+\item 
+string {\bf name} = \char`\"{}x\char`\"{}
+\item 
+tuple {\bf nan} = float('{\bf nan}')
+\item 
+tuple {\bf outbag} = rosbag.\-Bag(args.\-outputbag, 'w', compression={\bf param\-\_\-compression})
+\item 
+{\bf param\-\_\-compression} = rosbag.\-bag.\-Compression.\-B\-Z2
+\item 
+tuple {\bf parser}
+\item 
+tuple {\bf ptx} = (u -\/ {\bf center\-X})
+\item 
+tuple {\bf pty} = (v -\/ {\bf center\-Y})
+\item 
+{\bf ptz} = {\bf d};
+\item 
+list {\bf rgb} = {\bf cv\-\_\-rgb\-\_\-image\-\_\-color}[v,u]
+\item 
+{\bf rgb\-\_\-camera\-\_\-info} = \-None
+\item 
+{\bf rgb\-\_\-image\-\_\-color} = \-None
+\item 
+tuple {\bf rgb\-\_\-image\-\_\-mono} = bridge.\-cv\-\_\-to\-\_\-imgmsg({\bf cv\-\_\-rgb\-\_\-image\-\_\-mono})
+\item 
+tuple {\bf rgb\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()
+\item 
+{\bf time\-\_\-start} = \-None
+\item 
+tuple {\bf transforms} = dict()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Variable \-Documentation}
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!args@{args}}
+\index{args@{args}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{args}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::args} = parser.\-parse\-\_\-args()}\label{namespaceadd__pointclouds__to__bagfile_a5e40e500d738c1b2ffa14ef759854117}
+
+
+\-Definition at line 25 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!bridge@{bridge}}
+\index{bridge@{bridge}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{bridge}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::bridge} = \-Cv\-Bridge()}\label{namespaceadd__pointclouds__to__bagfile_aa632b7dd5b7742688880070e337ec86c}
+
+
+\-Definition at line 66 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!buffer@{buffer}}
+\index{buffer@{buffer}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{buffer}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::buffer} = [$\,$]}\label{namespaceadd__pointclouds__to__bagfile_a0a61de89cbb8d477156b19f15f77e812}
+
+
+\-Definition at line 143 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!buffer\-\_\-rgb@{buffer\-\_\-rgb}}
+\index{buffer\-\_\-rgb@{buffer\-\_\-rgb}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{buffer\-\_\-rgb}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::buffer\-\_\-rgb} = [$\,$]}\label{namespaceadd__pointclouds__to__bagfile_aa972df9c8636792629ac72316fd66264}
+
+
+\-Definition at line 144 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!center\-X@{center\-X}}
+\index{center\-X@{center\-X}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{center\-X}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::center\-X} = depth\-\_\-camera\-\_\-info.\-K[2]}\label{namespaceadd__pointclouds__to__bagfile_a96b816cd02a6127ce33e9a95a0547f2f}
+
+
+\-Definition at line 128 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!center\-Y@{center\-Y}}
+\index{center\-Y@{center\-Y}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{center\-Y}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::center\-Y} = depth\-\_\-camera\-\_\-info.\-K[5]}\label{namespaceadd__pointclouds__to__bagfile_ad6101d2859a0e4a2201a0221bdd799e4}
+
+
+\-Definition at line 129 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!cortex@{cortex}}
+\index{cortex@{cortex}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{cortex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::cortex} = \-None}\label{namespaceadd__pointclouds__to__bagfile_acb72f4345650ea691bdd01d0ec428772}
+
+
+\-Definition at line 63 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!cv\-\_\-depth\-\_\-image@{cv\-\_\-depth\-\_\-image}}
+\index{cv\-\_\-depth\-\_\-image@{cv\-\_\-depth\-\_\-image}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{cv\-\_\-depth\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::cv\-\_\-depth\-\_\-image} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf depth\-\_\-image}, \char`\"{}passthrough\char`\"{})}\label{namespaceadd__pointclouds__to__bagfile_ae3f05b4dafb4feb3a14bd599fe3f9e03}
+
+
+\-Definition at line 125 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!cv\-\_\-rgb\-\_\-image\-\_\-color@{cv\-\_\-rgb\-\_\-image\-\_\-color}}
+\index{cv\-\_\-rgb\-\_\-image\-\_\-color@{cv\-\_\-rgb\-\_\-image\-\_\-color}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{cv\-\_\-rgb\-\_\-image\-\_\-color}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::cv\-\_\-rgb\-\_\-image\-\_\-color} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf rgb\-\_\-image\-\_\-color}, \char`\"{}bgr8\char`\"{})}\label{namespaceadd__pointclouds__to__bagfile_af3656521d70fbd3204a6eded3944a67d}
+
+
+\-Definition at line 126 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!cv\-\_\-rgb\-\_\-image\-\_\-mono@{cv\-\_\-rgb\-\_\-image\-\_\-mono}}
+\index{cv\-\_\-rgb\-\_\-image\-\_\-mono@{cv\-\_\-rgb\-\_\-image\-\_\-mono}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{cv\-\_\-rgb\-\_\-image\-\_\-mono}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::cv\-\_\-rgb\-\_\-image\-\_\-mono} = bridge.\-imgmsg\-\_\-to\-\_\-cv({\bf rgb\-\_\-image\-\_\-color}, \char`\"{}mono8\char`\"{})}\label{namespaceadd__pointclouds__to__bagfile_a2403828e6736ac15f6a1d254711fa07f}
+
+
+\-Definition at line 119 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!d@{d}}
+\index{d@{d}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{d}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::d} = {\bf cv\-\_\-depth\-\_\-image}[v,u]}\label{namespaceadd__pointclouds__to__bagfile_a22296cd9d798629de5d35da0bbdb7ee1}
+
+
+\-Definition at line 147 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!depth\-\_\-camera\-\_\-info@{depth\-\_\-camera\-\_\-info}}
+\index{depth\-\_\-camera\-\_\-info@{depth\-\_\-camera\-\_\-info}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{depth\-\_\-camera\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::depth\-\_\-camera\-\_\-info} = \-None}\label{namespaceadd__pointclouds__to__bagfile_a1ad47849f691cb3e90e8e6c8fc50dbb2}
+
+
+\-Definition at line 59 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!depth\-\_\-image@{depth\-\_\-image}}
+\index{depth\-\_\-image@{depth\-\_\-image}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{depth\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::depth\-\_\-image} = \-None}\label{namespaceadd__pointclouds__to__bagfile_adc7fee14e69f0204b5f56a8be5dd9be0}
+
+
+\-Definition at line 61 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!depth\-\_\-points@{depth\-\_\-points}}
+\index{depth\-\_\-points@{depth\-\_\-points}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{depth\-\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::depth\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()}\label{namespaceadd__pointclouds__to__bagfile_a06083201e4bd6d1e677352a38403f7d4}
+
+
+\-Definition at line 131 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!depth\-Focal\-Length@{depth\-Focal\-Length}}
+\index{depth\-Focal\-Length@{depth\-Focal\-Length}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{depth\-Focal\-Length}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::depth\-Focal\-Length} = depth\-\_\-camera\-\_\-info.\-K[0]}\label{namespaceadd__pointclouds__to__bagfile_a3a5613be33d4a9884988833fd2b09f4f}
+
+
+\-Definition at line 130 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!frame@{frame}}
+\index{frame@{frame}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::frame} = 0}\label{namespaceadd__pointclouds__to__bagfile_aa3cd47715526802ae03988a17756023c}
+
+
+\-Definition at line 67 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!imu@{imu}}
+\index{imu@{imu}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{imu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::imu} = {\bf msg}}\label{namespaceadd__pointclouds__to__bagfile_a2fa7194e814a8fb414272366736c7072}
+
+
+\-Definition at line 84 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!inbag@{inbag}}
+\index{inbag@{inbag}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{inbag}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::inbag} = rosbag.\-Bag(args.\-inputbag,'r')}\label{namespaceadd__pointclouds__to__bagfile_ad8dd345cee6d9290060f75ee27a98027}
+
+
+\-Definition at line 51 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!msg@{msg}}
+\index{msg@{msg}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{msg}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::msg} = tf.\-msg.\-tf\-Message()}\label{namespaceadd__pointclouds__to__bagfile_a34da84fa8322a694b4fa257d5c06edad}
+
+
+\-Definition at line 108 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!name@{name}}
+\index{name@{name}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::name} = \char`\"{}x\char`\"{}}\label{namespaceadd__pointclouds__to__bagfile_a151074363958cddbdad4af4a7bdebab6}
+
+
+\-Definition at line 136 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!nan@{nan}}
+\index{nan@{nan}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{nan}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::nan} = float('{\bf nan}')}\label{namespaceadd__pointclouds__to__bagfile_a2d5d1ec52117a17027419ffa5aaab690}
+
+
+\-Definition at line 65 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!outbag@{outbag}}
+\index{outbag@{outbag}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{outbag}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::outbag} = rosbag.\-Bag(args.\-outputbag, 'w', compression={\bf param\-\_\-compression})}\label{namespaceadd__pointclouds__to__bagfile_ae51e61cf741525ea3ccb8e4616995a4a}
+
+
+\-Definition at line 57 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!param\-\_\-compression@{param\-\_\-compression}}
+\index{param\-\_\-compression@{param\-\_\-compression}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{param\-\_\-compression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::param\-\_\-compression} = rosbag.\-bag.\-Compression.\-B\-Z2}\label{namespaceadd__pointclouds__to__bagfile_aea382f010d0756a0d821c4700f6d0184}
+
+
+\-Definition at line 53 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!parser@{parser}}
+\index{parser@{parser}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{parser}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::parser}}\label{namespaceadd__pointclouds__to__bagfile_aab264f7d69ed35e27b15a07733129de7}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+1 argparse.ArgumentParser(description='''
+2     This scripts reads a bag file containing RGBD data, 
+3     adds the corresponding PointCloud2 messages, and saves it again into a bag
+       file. 
+4     Optional arguments allow to select only a portion of the original bag file.
+        
+5     ''')
+\end{DoxyCode}
+
+
+\-Definition at line 13 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!ptx@{ptx}}
+\index{ptx@{ptx}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{ptx}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::ptx} = (u -\/ {\bf center\-X})}\label{namespaceadd__pointclouds__to__bagfile_a66588931f3df479a9db610a2c6e4f506}
+
+
+\-Definition at line 148 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!pty@{pty}}
+\index{pty@{pty}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{pty}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::pty} = (v -\/ {\bf center\-Y})}\label{namespaceadd__pointclouds__to__bagfile_a13ae927f7008d703bffa9023b91af3cb}
+
+
+\-Definition at line 149 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!ptz@{ptz}}
+\index{ptz@{ptz}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{ptz}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::ptz} = {\bf d};}\label{namespaceadd__pointclouds__to__bagfile_a6d454e1bd65c1e5d4e3df0a3e5a9555f}
+
+
+\-Definition at line 150 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!rgb@{rgb}}
+\index{rgb@{rgb}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{rgb}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::rgb} = {\bf cv\-\_\-rgb\-\_\-image\-\_\-color}[v,u]}\label{namespaceadd__pointclouds__to__bagfile_a40277cc8921bd8e196c9db6e6513bbb6}
+
+
+\-Definition at line 176 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!rgb\-\_\-camera\-\_\-info@{rgb\-\_\-camera\-\_\-info}}
+\index{rgb\-\_\-camera\-\_\-info@{rgb\-\_\-camera\-\_\-info}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{rgb\-\_\-camera\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::rgb\-\_\-camera\-\_\-info} = \-None}\label{namespaceadd__pointclouds__to__bagfile_a3466769498643af14da1cde91e58bedc}
+
+
+\-Definition at line 60 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!rgb\-\_\-image\-\_\-color@{rgb\-\_\-image\-\_\-color}}
+\index{rgb\-\_\-image\-\_\-color@{rgb\-\_\-image\-\_\-color}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{rgb\-\_\-image\-\_\-color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::rgb\-\_\-image\-\_\-color} = \-None}\label{namespaceadd__pointclouds__to__bagfile_a8111d223c95a40022574f8a3f9a17d2d}
+
+
+\-Definition at line 62 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!rgb\-\_\-image\-\_\-mono@{rgb\-\_\-image\-\_\-mono}}
+\index{rgb\-\_\-image\-\_\-mono@{rgb\-\_\-image\-\_\-mono}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{rgb\-\_\-image\-\_\-mono}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::rgb\-\_\-image\-\_\-mono} = bridge.\-cv\-\_\-to\-\_\-imgmsg({\bf cv\-\_\-rgb\-\_\-image\-\_\-mono})}\label{namespaceadd__pointclouds__to__bagfile_a51f22be9575c4719006de84d966ba0af}
+
+
+\-Definition at line 120 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!rgb\-\_\-points@{rgb\-\_\-points}}
+\index{rgb\-\_\-points@{rgb\-\_\-points}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{rgb\-\_\-points}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::rgb\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()}\label{namespaceadd__pointclouds__to__bagfile_a0144eb55ff123a95fece704d5e619206}
+
+
+\-Definition at line 158 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!time\-\_\-start@{time\-\_\-start}}
+\index{time\-\_\-start@{time\-\_\-start}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{time\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::time\-\_\-start} = \-None}\label{namespaceadd__pointclouds__to__bagfile_af2835f057811f810cde8584c17799174}
+
+
+\-Definition at line 70 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+
+\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}!transforms@{transforms}}
+\index{transforms@{transforms}!add_pointclouds_to_bagfile@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}}
+\subsubsection[{transforms}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile\-::transforms} = dict()}\label{namespaceadd__pointclouds__to__bagfile_aada13242a0a9e1f7a5c84f15b7364e2f}
+
+
+\-Definition at line 68 of file add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py.
+

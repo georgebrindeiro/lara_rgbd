@@ -7,11 +7,11 @@
  * @attention Laboratório de Automação e Robótica (LARA)
  * @attention Universidade de Brasília (UnB)
  *
- * @brief  <small description of the file purpose>
+ * @brief  Sensor processing routines for LARA RGB-D SLAM
  *
- * <detailed description which may contain examples and test cases>
+ * This class is responsible for processing the RGB-D point cloud and odometry data for LARA RGB-D SLAM
  */
- 
+
 #include <sensor_processor/sensor_processor.h>
 
 void SensorProcessor::extract_rgb_image(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg, cv::Mat& img)
@@ -30,39 +30,39 @@ void SensorProcessor::extract_rgb_image(const sensor_msgs::PointCloud2::ConstPtr
 
 void SensorProcessor::extract_keypoints(cv::Mat& img, std::vector<cv::KeyPoint>& keypoints)
 {
-	switch(feature_detector_)
-	{
-		case SURF:
-		{
-			// Extract SURF keypoints
-			int minHessian = 400;
+    // Extract keypoints using the chosen feature detector
+    switch(feature_detector_)
+    {
+        case SURF:
+        {
+            int minHessian = 400;
 
-			cv::SurfFeatureDetector detector(minHessian);
-			detector.detect(img, keypoints);
-			
-			break;
-		}
-		
-		default:
-		{
-			ROS_INFO("Invalid option: feature_detector = %d", feature_detector_);
-			
-			break;
-		}
-	}
+            cv::SurfFeatureDetector detector(minHessian);
+            detector.detect(img, keypoints);
+
+            break;
+        }
+
+        default:
+        {
+            ROS_WARN("Invalid option (feature_detector = %d)", feature_detector_);
+
+            break;
+        }
+    }
 
     // Display detected keypoints
     if(display_features_)
     {
         // Overlay keypoints on image
         cv::drawKeypoints(img, keypoints, img, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
-      
+
         // Show results in display window
         cv::imshow("Display window", img);
         cv::waitKey(10);
     }
 
-	// Print out number of features detected for debugging
+    // Print out number of features detected for debugging
     ROS_DEBUG("# features: %ld", keypoints.size());
 }
 
@@ -86,7 +86,7 @@ void SensorProcessor::build_feature_cloud(const std::vector<cv::KeyPoint>& keypo
     pcl_conversions::toPCL(*cloud_msg, *pcl_input);
 
     // Use ExtractIndices filter to build feature cloud
-    pcl::ExtractIndices<pcl::PCLPointCloud2> extract;   
+    pcl::ExtractIndices<pcl::PCLPointCloud2> extract;
 
     extract.setInputCloud(pcl_input);
     extract.setIndices(keypoint_indices);

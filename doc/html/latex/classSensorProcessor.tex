@@ -1,0 +1,163 @@
+\section{\-Sensor\-Processor \-Class \-Reference}
+\label{classSensorProcessor}\index{\-Sensor\-Processor@{\-Sensor\-Processor}}
+
+
+{\ttfamily \#include $<$sensor\-\_\-processor.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf build\-\_\-feature\-\_\-cloud} (const std\-::vector$<$ cv\-::\-Key\-Point $>$ \&keypoints, const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg, sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Ptr \&feature\-\_\-cloud\-\_\-msg)
+\begin{DoxyCompactList}\small\item\em \-Builds feature point cloud from keypoints. \end{DoxyCompactList}\item 
+void {\bf extract\-\_\-keypoints} (const cv\-::\-Mat \&img, std\-::vector$<$ cv\-::\-Key\-Point $>$ \&keypoints)
+\begin{DoxyCompactList}\small\item\em \-Extracts keypoints from \-R\-G\-B image using the selected feature detector. \end{DoxyCompactList}\item 
+void {\bf extract\-\_\-rgb\-\_\-image} (const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&cloud\-\_\-msg, cv\-::\-Mat \&img)
+\begin{DoxyCompactList}\small\item\em \-Extracts \-R\-G\-B image from an \-R\-G\-B-\/\-D point cloud. \end{DoxyCompactList}\item 
+{\bf \-Sensor\-Processor} ({\bf \-Feature\-Detector} feature\-\_\-detector={\bf \-S\-U\-R\-F}, bool display\-\_\-features=false)
+\item 
+{\bf $\sim$\-Sensor\-Processor} ()
+\end{DoxyCompactItemize}
+\subsection*{\-Private \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bf display\-\_\-features\-\_\-}
+\item 
+{\bf \-Feature\-Detector} {\bf feature\-\_\-detector\-\_\-}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+
+
+\-Definition at line 33 of file sensor\-\_\-processor.\-h.
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!\-Sensor\-Processor@{\-Sensor\-Processor}}
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{\-Sensor\-Processor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Sensor\-Processor\-::\-Sensor\-Processor} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Feature\-Detector}}]{feature\-\_\-detector = {\ttfamily {\bf \-S\-U\-R\-F}}, }
+\item[{bool}]{display\-\_\-features = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline]}}\label{classSensorProcessor_afcad4a16970ea3c949a368cd68b17fde}
+
+
+\-Definition at line 36 of file sensor\-\_\-processor.\-h.
+
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!$\sim$\-Sensor\-Processor@{$\sim$\-Sensor\-Processor}}
+\index{$\sim$\-Sensor\-Processor@{$\sim$\-Sensor\-Processor}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{$\sim$\-Sensor\-Processor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Sensor\-Processor\-::$\sim$\-Sensor\-Processor} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline]}}\label{classSensorProcessor_a88a3a8b56e0fd05198c414c9432f7c74}
+
+
+\-Definition at line 46 of file sensor\-\_\-processor.\-h.
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!build\-\_\-feature\-\_\-cloud@{build\-\_\-feature\-\_\-cloud}}
+\index{build\-\_\-feature\-\_\-cloud@{build\-\_\-feature\-\_\-cloud}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{build\-\_\-feature\-\_\-cloud}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Sensor\-Processor\-::build\-\_\-feature\-\_\-cloud} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ cv\-::\-Key\-Point $>$ \&}]{keypoints, }
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg, }
+\item[{sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Ptr \&}]{feature\-\_\-cloud\-\_\-msg}
+\end{DoxyParamCaption}
+)}\label{classSensorProcessor_acac3226da4ae22426638fd3b4e6eeaf2}
+
+
+\-Builds feature point cloud from keypoints. 
+
+\-Uses the detected keypoints to filter the original \-R\-G\-B-\/\-D point cloud
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em keypoints} & \-Keypoints that will be used to filter the \-R\-G\-B-\/\-D point cloud \\
+\hline
+{\em cloud\-\_\-msg} & \-Pointer to kinect cloud message (as received by the \-R\-O\-S callback function) \\
+\hline
+{\em feature\-\_\-cloud\-\_\-msg} & \-Pointer to feature cloud message receiving the result \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 69 of file sensor\-\_\-processor.\-cpp.
+
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!extract\-\_\-keypoints@{extract\-\_\-keypoints}}
+\index{extract\-\_\-keypoints@{extract\-\_\-keypoints}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{extract\-\_\-keypoints}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Sensor\-Processor\-::extract\-\_\-keypoints} (
+\begin{DoxyParamCaption}
+\item[{const cv\-::\-Mat \&}]{img, }
+\item[{std\-::vector$<$ cv\-::\-Key\-Point $>$ \&}]{keypoints}
+\end{DoxyParamCaption}
+)}\label{classSensorProcessor_a3933aa59261be889afd65290d21b8dd3}
+
+
+\-Extracts keypoints from \-R\-G\-B image using the selected feature detector. 
+
+\-Applies the feature detector selected at initialization on an \-R\-G\-B image and returns the detected keypoints
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em img} & \-R\-G\-B image the feature detector will be applied on \\
+\hline
+{\em keypoints} & \-Keypoint vector receiving the result \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 31 of file sensor\-\_\-processor.\-cpp.
+
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!extract\-\_\-rgb\-\_\-image@{extract\-\_\-rgb\-\_\-image}}
+\index{extract\-\_\-rgb\-\_\-image@{extract\-\_\-rgb\-\_\-image}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{extract\-\_\-rgb\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Sensor\-Processor\-::extract\-\_\-rgb\-\_\-image} (
+\begin{DoxyParamCaption}
+\item[{const sensor\-\_\-msgs\-::\-Point\-Cloud2\-::\-Const\-Ptr \&}]{cloud\-\_\-msg, }
+\item[{cv\-::\-Mat \&}]{img}
+\end{DoxyParamCaption}
+)}\label{classSensorProcessor_ae557f839882890454aab0005baf6e52c}
+
+
+\-Extracts \-R\-G\-B image from an \-R\-G\-B-\/\-D point cloud. 
+
+\-Repackages \-R\-G\-B data found in point cloud so that conventional feature detectors can be used in \-Open\-C\-V
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em cloud\-\_\-msg} & \-Pointer to kinect cloud message (as received by the \-R\-O\-S callback function) \\
+\hline
+{\em img} & \-R\-G\-B image receiving the result \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 17 of file sensor\-\_\-processor.\-cpp.
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!display\-\_\-features\-\_\-@{display\-\_\-features\-\_\-}}
+\index{display\-\_\-features\-\_\-@{display\-\_\-features\-\_\-}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{display\-\_\-features\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-Sensor\-Processor\-::display\-\_\-features\-\_\-}\hspace{0.3cm}{\ttfamily  [private]}}\label{classSensorProcessor_a52d79e6da37dac67c7da671555896d7f}
+\-Indicates whether we want to the extracted keypoints in a \-C\-V window 
+
+\-Definition at line 84 of file sensor\-\_\-processor.\-h.
+
+\index{\-Sensor\-Processor@{\-Sensor\-Processor}!feature\-\_\-detector\-\_\-@{feature\-\_\-detector\-\_\-}}
+\index{feature\-\_\-detector\-\_\-@{feature\-\_\-detector\-\_\-}!SensorProcessor@{\-Sensor\-Processor}}
+\subsubsection[{feature\-\_\-detector\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Feature\-Detector} {\bf \-Sensor\-Processor\-::feature\-\_\-detector\-\_\-}\hspace{0.3cm}{\ttfamily  [private]}}\label{classSensorProcessor_a67a789139df008dc90b0054bea9a6b1d}
+\-Indicates which feature detector we are using to process point clouds 
+
+\-Definition at line 82 of file sensor\-\_\-processor.\-h.
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+{\bf sensor\-\_\-processor.\-h}\item 
+{\bf sensor\-\_\-processor.\-cpp}\end{DoxyCompactItemize}

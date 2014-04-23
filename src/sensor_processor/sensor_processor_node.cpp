@@ -7,9 +7,9 @@
  * @attention Laboratório de Automação e Robótica (LARA)
  * @attention Universidade de Brasília (UnB)
  *
- * @brief  <small description of the file purpose>
+ * @brief  ROS node used to process raw sensor data
  *
- * <detailed description which may contain examples and test cases>
+ * This ROS node receives both the RGB-D point cloud from the Kinect and the odometry info from the Pioneer
  */
 
 #include <ros/ros.h>
@@ -28,8 +28,8 @@ int main (int argc, char** argv)
     // Create a ROS publisher for processed sensor data
     pub_cloud = nh.advertise<sensor_msgs::PointCloud2>("feature_cloud", 1);
 
-	// Create SensorProcessor
-	sensor_processor = new SensorProcessor();
+    // Create SensorProcessor
+    sensor_processor = new SensorProcessor();
 
     // TODO: remove this when filter is running
     ros::Subscriber sub_odom  = nh.subscribe("odometry", 1, odom_cb);
@@ -94,6 +94,6 @@ void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg)
     geometry_msgs::PoseWithCovarianceStamped::Ptr estimated_pose_msg(new geometry_msgs::PoseWithCovarianceStamped);
     estimated_pose_msg->header = odom_msg->header;
     estimated_pose_msg->pose = odom_msg->pose;
-    
+
     pub_pose.publish(estimated_pose_msg);
 }

@@ -1,0 +1,78 @@
+\section{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py \-File \-Reference}
+\label{add__pointclouds__to__bagfile_8py}\index{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py@{add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-py}}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-args} = parser.\-parse\-\_\-args()
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-bridge} = \-Cv\-Bridge()
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-buffer} = [$\,$]
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-buffer\-\_\-rgb} = [$\,$]
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-center\-X} = depth\-\_\-camera\-\_\-info.\-K[2]
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-center\-Y} = depth\-\_\-camera\-\_\-info.\-K[5]
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-cortex} = \-None
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-cv\-\_\-depth\-\_\-image} = bridge.\-imgmsg\-\_\-to\-\_\-cv(depth\-\_\-image, \char`\"{}passthrough\char`\"{})
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-cv\-\_\-rgb\-\_\-image\-\_\-color} = bridge.\-imgmsg\-\_\-to\-\_\-cv(rgb\-\_\-image\-\_\-color, \char`\"{}bgr8\char`\"{})
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-cv\-\_\-rgb\-\_\-image\-\_\-mono} = bridge.\-imgmsg\-\_\-to\-\_\-cv(rgb\-\_\-image\-\_\-color, \char`\"{}mono8\char`\"{})
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-d} = cv\-\_\-depth\-\_\-image[v,u]
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-depth\-\_\-camera\-\_\-info} = \-None
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-depth\-\_\-image} = \-None
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-depth\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-depth\-Focal\-Length} = depth\-\_\-camera\-\_\-info.\-K[0]
+\item 
+int {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-frame} = 0
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-imu} = msg
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-inbag} = rosbag.\-Bag(args.\-inputbag,'r')
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-msg} = tf.\-msg.\-tf\-Message()
+\item 
+string {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-name} = \char`\"{}x\char`\"{}
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-nan} = float('nan')
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-outbag} = rosbag.\-Bag(args.\-outputbag, 'w', compression=param\-\_\-compression)
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-param\-\_\-compression} = rosbag.\-bag.\-Compression.\-B\-Z2
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-parser}
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-ptx} = (u -\/ center\-X)
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-pty} = (v -\/ center\-Y)
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-ptz} = d;
+\item 
+list {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-rgb} = cv\-\_\-rgb\-\_\-image\-\_\-color[v,u]
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-rgb\-\_\-camera\-\_\-info} = \-None
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-rgb\-\_\-image\-\_\-color} = \-None
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-rgb\-\_\-image\-\_\-mono} = bridge.\-cv\-\_\-to\-\_\-imgmsg(cv\-\_\-rgb\-\_\-image\-\_\-mono)
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-rgb\-\_\-points} = sensor\-\_\-msgs.\-msg.\-Point\-Cloud2()
+\item 
+{\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-time\-\_\-start} = \-None
+\item 
+tuple {\bf add\-\_\-pointclouds\-\_\-to\-\_\-bagfile.\-transforms} = dict()
+\end{DoxyCompactItemize}

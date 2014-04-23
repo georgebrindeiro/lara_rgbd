@@ -1,0 +1,207 @@
+\section{plot\-\_\-trajectory\-\_\-into\-\_\-image \-Namespace \-Reference}
+\label{namespaceplot__trajectory__into__image}\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def {\bf point}
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bf args} = parser.\-parse\-\_\-args()
+\item 
+float {\bf center\-X} = 319.\-5
+\item 
+float {\bf center\-Y} = 239.\-5
+\item 
+tuple {\bf draw} = \-Image\-Draw.\-Draw({\bf image})
+\item 
+float {\bf focal\-Length} = 525.\-0
+\item 
+tuple {\bf image} = \-Image.\-open({\bf image\-\_\-file})
+\item 
+list {\bf image\-\_\-file} = {\bf image\-\_\-list}[stamp]
+\item 
+tuple {\bf image\-\_\-list} = read\-\_\-file\-\_\-list(args.\-image\-\_\-list)
+\item 
+tuple {\bf matches} = associate({\bf image\-\_\-list}, {\bf pose\-\_\-list},0,0.\-02)
+\item 
+tuple {\bf matches\-\_\-dict} = dict({\bf matches})
+\item 
+list {\bf p} = {\bf traj}[s]
+\item 
+tuple {\bf parser}
+\item 
+list {\bf pose} = {\bf traj}[{\bf matches\-\_\-dict}[stamp]]
+\item 
+tuple {\bf pose\-\_\-list} = read\-\_\-file\-\_\-list(args.\-trajectory\-\_\-file)
+\item 
+tuple {\bf rel\-\_\-pose} = numpy.\-dot(numpy.\-linalg.\-inv({\bf pose}),{\bf p})
+\item 
+float {\bf size} = 0.\-01
+\item 
+tuple {\bf stamps} = image\-\_\-list.\-keys()
+\item 
+tuple {\bf traj} = read\-\_\-trajectory(args.\-trajectory\-\_\-file)
+\item 
+list {\bf xy} = [$\,$]
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!point@{point}}
+\index{point@{point}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{point}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image.\-point} (
+\begin{DoxyParamCaption}
+\item[{}]{pose, }
+\item[{}]{px, }
+\item[{}]{py, }
+\item[{}]{pz}
+\end{DoxyParamCaption}
+)}\label{namespaceplot__trajectory__into__image_a89d6e728514b842d39946a55ee294f32}
+
+
+\-Definition at line 15 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+
+
+\subsection{\-Variable \-Documentation}
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!args@{args}}
+\index{args@{args}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{args}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::args} = parser.\-parse\-\_\-args()}\label{namespaceplot__trajectory__into__image_abe0bbe85a00bf8860b1c6e7350e606a5}
+
+
+\-Definition at line 32 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!center\-X@{center\-X}}
+\index{center\-X@{center\-X}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{center\-X}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::center\-X} = 319.\-5}\label{namespaceplot__trajectory__into__image_a091a0aa78402afc0cd4ac7631095be66}
+
+
+\-Definition at line 12 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!center\-Y@{center\-Y}}
+\index{center\-Y@{center\-Y}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{center\-Y}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::center\-Y} = 239.\-5}\label{namespaceplot__trajectory__into__image_a05b0983440c2719c18f275a3915126ca}
+
+
+\-Definition at line 13 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!draw@{draw}}
+\index{draw@{draw}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::draw} = \-Image\-Draw.\-Draw({\bf image})}\label{namespaceplot__trajectory__into__image_ae676cca67d7fab063488d30cdfa6b07e}
+
+
+\-Definition at line 57 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!focal\-Length@{focal\-Length}}
+\index{focal\-Length@{focal\-Length}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{focal\-Length}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::focal\-Length} = 525.\-0}\label{namespaceplot__trajectory__into__image_ab17d35b9fd1a797d73d61f85d4ffc1da}
+
+
+\-Definition at line 11 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!image@{image}}
+\index{image@{image}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{image}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::image} = \-Image.\-open({\bf image\-\_\-file})}\label{namespaceplot__trajectory__into__image_a602c882140cf14c870220b296072757b}
+
+
+\-Definition at line 46 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!image\-\_\-file@{image\-\_\-file}}
+\index{image\-\_\-file@{image\-\_\-file}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{image\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::image\-\_\-file} = {\bf image\-\_\-list}[stamp]}\label{namespaceplot__trajectory__into__image_a3f904655ae4a1c278e81d21dea9b56d8}
+
+
+\-Definition at line 45 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!image\-\_\-list@{image\-\_\-list}}
+\index{image\-\_\-list@{image\-\_\-list}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{image\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::image\-\_\-list} = read\-\_\-file\-\_\-list(args.\-image\-\_\-list)}\label{namespaceplot__trajectory__into__image_ae4ef954c3dff91c017d9ac568a3443d1}
+
+
+\-Definition at line 34 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!matches@{matches}}
+\index{matches@{matches}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{matches}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::matches} = associate({\bf image\-\_\-list}, {\bf pose\-\_\-list},0,0.\-02)}\label{namespaceplot__trajectory__into__image_a9bd46f72b47e68ca8659b0f853486670}
+
+
+\-Definition at line 38 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!matches\-\_\-dict@{matches\-\_\-dict}}
+\index{matches\-\_\-dict@{matches\-\_\-dict}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{matches\-\_\-dict}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::matches\-\_\-dict} = dict({\bf matches})}\label{namespaceplot__trajectory__into__image_aca2bd79a7bfe5769e9005eeec74a9dd2}
+
+
+\-Definition at line 43 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!p@{p}}
+\index{p@{p}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{p}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::p} = {\bf traj}[s]}\label{namespaceplot__trajectory__into__image_a84e5a099e8e2f7bcd4723af4db9a50b8}
+
+
+\-Definition at line 61 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!parser@{parser}}
+\index{parser@{parser}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{parser}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::parser}}\label{namespaceplot__trajectory__into__image_ac2cbc20bab3da7c4d1942267ad33fda9}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+1 argparse.ArgumentParser(description='''
+2     This script plots a trajectory into an image sequence. 
+3     ''')
+\end{DoxyCode}
+
+
+\-Definition at line 26 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!pose@{pose}}
+\index{pose@{pose}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{pose}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::pose} = {\bf traj}[{\bf matches\-\_\-dict}[stamp]]}\label{namespaceplot__trajectory__into__image_aa7039843ddbd469dc0cba6eef73db7ab}
+
+
+\-Definition at line 51 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!pose\-\_\-list@{pose\-\_\-list}}
+\index{pose\-\_\-list@{pose\-\_\-list}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{pose\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::pose\-\_\-list} = read\-\_\-file\-\_\-list(args.\-trajectory\-\_\-file)}\label{namespaceplot__trajectory__into__image_a75eb54148578b8aec8ea836630e5fe09}
+
+
+\-Definition at line 35 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!rel\-\_\-pose@{rel\-\_\-pose}}
+\index{rel\-\_\-pose@{rel\-\_\-pose}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{rel\-\_\-pose}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::rel\-\_\-pose} = numpy.\-dot(numpy.\-linalg.\-inv({\bf pose}),{\bf p})}\label{namespaceplot__trajectory__into__image_a3ecd45a8f66002c49b9d012209144557}
+
+
+\-Definition at line 62 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!size@{size}}
+\index{size@{size}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::size} = 0.\-01}\label{namespaceplot__trajectory__into__image_aa273ad545f0ed944604b30bc41e98efd}
+
+
+\-Definition at line 58 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!stamps@{stamps}}
+\index{stamps@{stamps}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{stamps}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::stamps} = image\-\_\-list.\-keys()}\label{namespaceplot__trajectory__into__image_ae63f684f05556dd6102c6c592f209680}
+
+
+\-Definition at line 40 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!traj@{traj}}
+\index{traj@{traj}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{traj}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::traj} = read\-\_\-trajectory(args.\-trajectory\-\_\-file)}\label{namespaceplot__trajectory__into__image_a231028885b6c1eb04c71e551420f0d99}
+
+
+\-Definition at line 36 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
+\index{plot\-\_\-trajectory\-\_\-into\-\_\-image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}!xy@{xy}}
+\index{xy@{xy}!plot_trajectory_into_image@{plot\-\_\-trajectory\-\_\-into\-\_\-image}}
+\subsubsection[{xy}]{\setlength{\rightskip}{0pt plus 5cm}list {\bf plot\-\_\-trajectory\-\_\-into\-\_\-image\-::xy} = [$\,$]}\label{namespaceplot__trajectory__into__image_ae433611930ba3f714a9b59521aea9ae6}
+
+
+\-Definition at line 56 of file plot\-\_\-trajectory\-\_\-into\-\_\-image.\-py.
+
