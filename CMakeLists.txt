@@ -90,11 +90,11 @@ include_directories(
 add_executable(sensor_processor src/sensor_processor/sensor_processor_node.cpp src/sensor_processor/sensor_processor.cpp)
 target_link_libraries(sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
+add_executable(state_estimator src/state_estimator/state_estimator_node.cpp src/state_estimator/state_estimator.cpp)
+target_link_libraries(state_estimator ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+
 #add_executable(hs_map_manager src/MapManager/MapManager.cpp)
 #target_link_libraries(hs_map_manager ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
-
-#add_executable(hs_state_estimator src/StateEstimator/StateEstimator.cpp src/Filter/Filter.cpp src/Model/Motion/MotionModel.cpp src/Model/Measurement/MeasurementModel.cpp)
-#target_link_libraries(hs_state_estimator ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #add_executable(hs_cloud_saver src/Utilities/CloudSaver.cpp)
 #target_link_libraries(hs_cloud_saver ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})

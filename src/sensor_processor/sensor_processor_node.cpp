@@ -9,7 +9,8 @@
  *
  * @brief  ROS node used to process raw sensor data
  *
- * This ROS node receives both the RGB-D point cloud from the Kinect and the odometry info from the Pioneer
+ * This ROS node receives both the RGB-D point cloud from the Kinect and the odometry info from the Pioneer and does
+ * some processing using the SensorProcessor class to transform it to the format expected by LARA RGB-D SLAM.
  */
 
 #include <ros/ros.h>
