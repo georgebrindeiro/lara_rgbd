@@ -11,6 +11,19 @@
 #ifndef LARA_RGBD_STATE_ESTIMATOR_H_
 #define LARA_RGBD_STATE_ESTIMATOR_H_
 
+#include <ros/ros.h>
+
+#include <sensor_msgs/PointCloud2.h>
+
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+#include <pcl/ros/conversions.h>
+
+#include <pcl_conversions/pcl_conversions.h>
+
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <nav_msgs/Odometry.h>
+
 class StateEstimator
 {
     public:
@@ -19,19 +32,17 @@ class StateEstimator
 
         }
 
-        ~SensorProcessor() {}
+        ~StateEstimator() {}
 
         /*!
-        * @brief
+        * @brief Repackages estimated pose into a ROS message for publishing
         *
-        * This does
-        *
-        * @param bar                    ef
+        * Repackages current pose estimate into a geometry_msgs::PoseWithCovarianceStamped ROS message for publishing
         */
-        void foo(int bar);
+        void estimated_pose(geometry_msgs::PoseWithCovarianceStamped& current_pose);
 
     private:
-        int var_;      /**< Indicates which feature detector we are using to process point clouds  */
+        int var_;      /**< Indicates ...  */
 };
 
 #endif  // LARA_RGBD_STATE_ESTIMATOR_H_

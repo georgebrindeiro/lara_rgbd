@@ -5,6 +5,6 @@
 
     <!--*******************************           Nodes             *******************************-->
 
-    <node pkg="lara_rgbd" type="sensor_processor" name="sensor_processor" output="screen" />
+    <node pkg="lara_rgbd" type="state_estimator" name="state_estimator" output="screen" />
 
 </launch>

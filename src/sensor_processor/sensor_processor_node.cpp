@@ -24,17 +24,13 @@ int main (int argc, char** argv)
     ros::NodeHandle nh;
 
     // Create a ROS subscriber for sensor data
-    ros::Subscriber sub_cloud = nh.subscribe("kinect_cloud", 1, cloud_cb);
+    ros::Subscriber sub_cloud = nh.subscribe("/rgbd_dataset/kinect/depth_registered/points", 1, cloud_cb);
 
     // Create a ROS publisher for processed sensor data
     pub_cloud = nh.advertise<sensor_msgs::PointCloud2>("feature_cloud", 1);
 
     // Create SensorProcessor
     sensor_processor = new SensorProcessor();
-
-    // TODO: remove this when filter is running
-    ros::Subscriber sub_odom  = nh.subscribe("odometry", 1, odom_cb);
-    pub_pose = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("estimated_pose", 1);
 
     // Spin
     ros::spin ();
@@ -86,15 +82,4 @@ void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
     ROS_DEBUG("row_step: %d\n", row_step);
     ROS_DEBUG("is_dense: %d\n", is_dense);
     ROS_DEBUG("------------------------------------------------------");
-}
-
-// TODO: remove this when filter is running
-void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg)
-{
-    // Fake pose estimate from odometry
-    geometry_msgs::PoseWithCovarianceStamped::Ptr estimated_pose_msg(new geometry_msgs::PoseWithCovarianceStamped);
-    estimated_pose_msg->header = odom_msg->header;
-    estimated_pose_msg->pose = odom_msg->pose;
-
-    pub_pose.publish(estimated_pose_msg);
 }

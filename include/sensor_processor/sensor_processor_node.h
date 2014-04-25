@@ -20,12 +20,4 @@ ros::Publisher pub_cloud;
 
 SensorProcessor* sensor_processor;
 
-// TODO: remove these when filter is running
-#include <geometry_msgs/PoseWithCovarianceStamped.h>
-#include <nav_msgs/Odometry.h>
-
-void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg);
-
-ros::Publisher pub_pose;
-
 #endif  // LARA_RGBD_SENSOR_PROCESSOR_NODE_H_

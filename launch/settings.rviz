@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: DepthCloud
+    SyncSource: Image
 Visualization Manager:
   Class: ""
   Displays:
@@ -54,41 +54,13 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
-          Value: true
-        kinect:
-          Value: true
-        laser:
-          Value: false
-        odom:
-          Value: false
-        openni_camera:
-          Value: true
-        openni_depth_frame:
-          Value: false
-        openni_depth_optical_frame:
-          Value: false
-        openni_rgb_frame:
-          Value: false
-        openni_rgb_optical_frame:
-          Value: false
-        world:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        world:
-          kinect:
-            openni_camera:
-              openni_depth_frame:
-                openni_depth_optical_frame:
-                  {}
-              openni_rgb_frame:
-                openni_rgb_optical_frame:
-                  {}
+        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -104,11 +76,11 @@ Visualization Manager:
       Channel Name: intensity
       Class: rviz/DepthCloud
       Color: 255; 255; 255
-      Color Image Topic: /camera/rgb/image_color
+      Color Image Topic: /rgbd_dataset/kinect/rgb/image_color
       Color Transformer: RGB8
       Color Transport Hint: raw
       Decay Time: 0
-      Depth Map Topic: /camera/depth/image
+      Depth Map Topic: /rgbd_dataset/kinect/depth/image
       Depth Map Transport Hint: raw
       Enabled: true
       Invert Rainbow: false
@@ -131,7 +103,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /camera/rgb/image_color
+      Image Topic: /rgbd_dataset/kinect/rgb/image_color
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -165,7 +137,7 @@ Visualization Manager:
       Size (Pixels): 15
       Size (m): 0.01
       Style: Points
-      Topic: /feature_cloud
+      Topic: /lara_rgbd/feature_cloud
       Use Fixed Frame: true
       Use rainbow: true
       Value: true

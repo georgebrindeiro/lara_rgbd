@@ -13,6 +13,8 @@
 
 #include <state_estimator/state_estimator.h>
 
+#include <ros/ros.h>
+
 void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg);
 

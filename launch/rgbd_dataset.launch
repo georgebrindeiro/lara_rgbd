@@ -1,5 +1,5 @@
 <launch>
-    <!--*******************************        RGB-D Dataset        *******************************-->  
+    <!--*******************************        RGB-D Dataset        *******************************-->
 
     <!--*******************************         Arguments           *******************************-->
 
@@ -12,16 +12,34 @@
     <!--*******************************           Nodes             *******************************-->
 
     <!-- Load chosen dataset -->
-    <node pkg="rosbag" type="play" name="rosbag_playback" args="--clock $(find lara_rgbd)/data/$(arg playback_rosbag)" />
+    <node pkg="rosbag" type="play" name="rosbag_playback" args="--clock $(find lara_rgbd)/data/$(arg playback_rosbag)">
+
+        <remap from="/camera/depth/disparity"     to="kinect/depth/disparity" />
+        <remap from="/camera/depth/camera_info"   to="kinect/depth/camera_info" />
+        <remap from="/camera/depth/image"         to="kinect/depth/image" />
+        <remap from="/camera/rgb/image_color"     to="kinect/rgb/image_color" />
+        <remap from="/camera/rgb/camera_info"     to="kinect/rgb/camera_info" />
+
+        <remap from="/pose"                       to="pioneer/odometry" />
+
+        <remap from="/scan"                       to="unused/scan" />
+        <remap from="/cur_tilt_angle"             to="unused/cur_tilt_angle" />
+        <!--<remap from="/tf"                         to="unused/tf" />-->
+        <remap from="/imu"                        to="unused/imu" />
+        <remap from="/cortex_marker_array"        to="unused/cortex_marker_array" />
+
+    </node>
 
     <!-- Convert depth images to point clouds -->
     <node pkg="nodelet" type="nodelet" args="manager" name="depth_image_proc_nodelet_manager" output="screen" />
 
     <node pkg="nodelet" type="nodelet" name="cloudify" args="load depth_image_proc/point_cloud_xyzrgb depth_image_proc_nodelet_manager --no-bond">
-        <remap from="depth_registered/image_rect" to="camera/depth/image" />
-        <remap from="depth_registered/points"     to="camera/depth_registered/points" />
-        <remap from="rgb/image_rect_color"        to="camera/rgb/image_color" />
-        <remap from="rgb/camera_info"             to="camera/rgb/camera_info" />
+
+        <remap from="depth_registered/image_rect" to="kinect/depth/image" />
+        <remap from="depth_registered/points"     to="kinect/depth_registered/points" />
+        <remap from="rgb/image_rect_color"        to="kinect/rgb/image_color" />
+        <remap from="rgb/camera_info"             to="kinect/rgb/camera_info" />
+
     </node>
 
 </launch>

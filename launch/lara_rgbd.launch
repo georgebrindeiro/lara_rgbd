@@ -1,10 +1,11 @@
 <launch>
-    <!--*******************************       LARA RGB-D SLAM       *******************************-->  
+    <!--*******************************       LARA RGB-D SLAM       *******************************-->
 
     <!--*******************************           Includes          *******************************-->
 
-    <include file="$(find lara_rgbd)/launch/rgbd_dataset.launch" />
-    <include file="$(find lara_rgbd)/launch/sensor_processor.launch" />
-    <include file="$(find lara_rgbd)/launch/visualization.launch" />
+    <include ns="rgbd_dataset" file="$(find lara_rgbd)/launch/rgbd_dataset.launch" />
+    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/sensor_processor.launch" />
+    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/state_estimator.launch" />
+    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/visualization.launch" />
 
 </launch>
