@@ -15,8 +15,13 @@
 
 #include <ros/ros.h>
 
+// ROS Subscriber Callbacks
 void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg);
+
+// ROS Publisher Functions
+void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg);
+void pub_pose_estimate();
 
 ros::Publisher pub_pose;
 

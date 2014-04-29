@@ -54,13 +54,41 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_link:
+          Value: true
+        kinect:
+          Value: true
+        laser:
+          Value: true
+        odom:
+          Value: true
+        openni_camera:
+          Value: true
+        openni_depth_frame:
+          Value: true
+        openni_depth_optical_frame:
+          Value: true
+        openni_rgb_frame:
+          Value: true
+        openni_rgb_optical_frame:
+          Value: true
+        world:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        world:
+          kinect:
+            openni_camera:
+              openni_depth_frame:
+                openni_depth_optical_frame:
+                  {}
+              openni_rgb_frame:
+                openni_rgb_optical_frame:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -140,6 +168,14 @@ Visualization Manager:
       Topic: /lara_rgbd/feature_cloud
       Use Fixed Frame: true
       Use rainbow: true
+      Value: true
+    - Alpha: 0.5
+      Class: rviz_plugin_covariance/PoseWithCovariance
+      Color: 204; 51; 204
+      Enabled: true
+      Name: PoseWithCovariance
+      Scale: 1
+      Topic: /lara_rgbd/estimated_pose
       Value: true
   Enabled: true
   Global Options:

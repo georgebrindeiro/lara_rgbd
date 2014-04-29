@@ -13,7 +13,15 @@
 
 #include <sensor_processor/sensor_processor.h>
 
+#include <ros/ros.h>
+
+// ROS Subscriber Callbacks
 void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
+
+// ROS Publisher Functions
+void pub_feature_cloud(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
+
+// Auxiliary Functions
 void print_cloud_msg(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 
 ros::Publisher pub_cloud;

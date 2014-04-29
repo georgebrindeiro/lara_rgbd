@@ -13,8 +13,6 @@
  * some processing using the SensorProcessor class to transform it to the format expected by LARA RGB-D SLAM.
  */
 
-#include <ros/ros.h>
-
 #include <sensor_processor/sensor_processor_node.h>
 
 int main (int argc, char** argv)
@@ -54,7 +52,12 @@ void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
     sensor_processor->build_feature_cloud(keypoints, cloud_msg, feature_cloud_msg);
 
     // Publish the data
-    pub_cloud.publish(feature_cloud_msg);
+    pub_feature_cloud(feature_cloud_msg);
+}
+
+void pub_feature_cloud(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
+{
+    pub_cloud.publish(cloud_msg);
 }
 
  void print_cloud_msg(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)

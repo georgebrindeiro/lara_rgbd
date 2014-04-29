@@ -36,13 +36,9 @@ int main (int argc, char** argv)
     // Spin
     while(ros::ok())
     {
-        /*geometry_msgs::PoseWithCovarianceStamped current_pose;
+        state_estimator->quasiconstant_motion_model();
 
-        current_pose.header.stamp = ros::Time::now();
-        current_pose.header.frame_id = "world";
-        state_estimator->estimated_pose(current_pose);
-
-        pub_pose.publish(current_pose);*/
+        pub_pose_estimate();
 
         ros::spinOnce();
         loop_rate.sleep();
@@ -51,17 +47,41 @@ int main (int argc, char** argv)
 
 void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
 {
-    ROS_WARN("Cloud matching measurement model still not implemented!");
+    state_estimator->cloud_measurement_model(cloud_msg);
 }
 
 void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg)
 {
-    ROS_WARN("Odometry motion model still not implemented! Publishing fake pose estimate");
+    state_estimator->odom_motion_model(odom_msg);
 
+    //pub_fake_pose_estimate(odom_msg);
+}
+
+void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg)
+{
     // Fake pose estimate from odometry
     geometry_msgs::PoseWithCovarianceStamped::Ptr estimated_pose_msg(new geometry_msgs::PoseWithCovarianceStamped);
     estimated_pose_msg->header = odom_msg->header;
     estimated_pose_msg->pose = odom_msg->pose;
 
+    estimated_pose_msg->pose.covariance[0] = 10;
+    estimated_pose_msg->pose.covariance[6+1] = 10;
+    estimated_pose_msg->pose.covariance[12+2] = 0.1;
+    estimated_pose_msg->pose.covariance[18+3] = 0.01;
+    estimated_pose_msg->pose.covariance[24+4] = 0.01;
+    estimated_pose_msg->pose.covariance[30+5] = 0.01;
+
     pub_pose.publish(estimated_pose_msg);
+}
+
+void pub_pose_estimate()
+{
+    // Real pose estimate from state_estimator
+    geometry_msgs::PoseWithCovarianceStamped current_pose;
+
+    current_pose.header.stamp = ros::Time::now();
+    current_pose.header.frame_id = "world";
+    state_estimator->estimated_pose(current_pose);
+
+    pub_pose.publish(current_pose);
 }
