@@ -31,6 +31,8 @@ class StateEstimator
     public:
         StateEstimator()
         {
+            num_keyframes_ = 0;
+
             init_state_estimate();
         }
 
@@ -81,34 +83,6 @@ class StateEstimator
 
     private:
         /*!
-        * @brief Calculates the size of the state vector
-        *
-        * Repackages current pose estimate into a geometry_msgs::PoseWithCovarianceStamped ROS message for publishing
-        */
-        inline int n_()                         {   return (7*(num_past_poses_+1));    }
-
-        /*!
-        * @brief Returns pose of index i inside the state vector
-        *
-        * Returns pose of index i inside the state vector
-        */
-        //inline Eigen::VectorXf pose_(int i)     {   return subvector(7*i,7*(i+1)-1);  }
-
-        /*!
-        * @brief Repackages a pose into a position vector + orientation quaternion
-        *
-        * Repackages a pose into a position vector + orientation quaternion
-        */
-        //inline Eigen::VectorXf pose_to_pq(pose,p,q)     {   return subvector(7*i,7*(i+1)-1)  };
-
-        /*!
-        * @brief Repackages a position vector + orientation quaternion into a pose
-        *
-        * Repackages a position vector + orientation quaternion into a pose
-        */
-        //inline Eigen::VectorXf pq_to_pose(p,q,pose)     {   return subvector(7*i,7*(i+1)-1)  };
-
-        /*!
         * @brief Performs state vector augmentation using current pose
         *
         * Performs state vector augmentation using current pose, as described in LARA RGB-D SLAM
@@ -118,7 +92,10 @@ class StateEstimator
         Eigen::VectorXf state_estimate_;       /**< State vector for LARA RGB-D SLAM  */
         Eigen::MatrixXf cov_state_estimate_;   /**< State vector covariance matrix for LARA RGB-D SLAM  */
 
-        int num_past_poses_;            /**< Indicates how many past poses we have stored */
+        int num_keyframes_;                                     /**< Number of keyframes added to history */
+        std::vector< Eigen::VectorXf > keyframes_pose_;         /**< State vector for keyframes */
+        std::vector< Eigen::MatrixXf > keyframes_cov_;          /**< Covariance matrix for keyframes */
+        std::vector< pcl::PCLPointCloud2 > keyframes_cloud_;    /**< Feature cloud for keyframes */
 };
 
 #endif  // LARA_RGBD_STATE_ESTIMATOR_H_
