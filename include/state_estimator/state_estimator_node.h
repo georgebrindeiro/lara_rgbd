@@ -22,8 +22,10 @@ void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg);
 // ROS Publisher Functions
 void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg);
 void pub_pose_estimate();
+void pub_keyframes_estimate();
 
 ros::Publisher pub_pose;
+ros::Publisher pub_keyframes;
 
 StateEstimator* state_estimator;
 

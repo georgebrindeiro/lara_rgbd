@@ -170,12 +170,20 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Alpha: 0.5
-      Class: rviz_plugin_covariance/PoseWithCovariance
+      Class: rviz_lara_rgbd/PoseWithCovariance
       Color: 204; 51; 204
       Enabled: true
       Name: PoseWithCovariance
       Scale: 1
       Topic: /lara_rgbd/estimated_pose
+      Value: true
+    - Alpha: 0.5
+      Class: rviz_lara_rgbd/PoseWithCovarianceArray
+      Color: 255; 255; 0
+      Enabled: true
+      Name: PoseWithCovarianceArray
+      Scale: 1
+      Topic: /lara_rgbd/keyframes
       Value: true
   Enabled: true
   Global Options:

@@ -26,6 +26,8 @@
 
 #include <Eigen/Dense>
 
+#include <lara_rgbd_msgs/PoseWithCovarianceStampedArray.h>
+
 class StateEstimator
 {
     public:
@@ -80,6 +82,13 @@ class StateEstimator
         * Repackages current pose estimate into a geometry_msgs::PoseWithCovarianceStamped ROS message for publishing
         */
         void estimated_pose(geometry_msgs::PoseWithCovarianceStamped& current_pose);
+
+        /*!
+        * @brief Repackages keyframes into a ROS message for publishing
+        *
+        * Repackages keyframes into a geometry_msgs::PoseWithCovarianceStampedArray ROS message for publishing
+        */
+        void keyframes(lara_rgbd_msgs::PoseWithCovarianceStampedArray& keyframes);
 
     private:
         /*!

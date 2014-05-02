@@ -28,6 +28,9 @@ int main (int argc, char** argv)
     // Create a ROS publisher for estimated pose
     pub_pose = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("estimated_pose", 1);
 
+    // Create a ROS publisher for keyframes
+    pub_keyframes = nh.advertise<lara_rgbd_msgs::PoseWithCovarianceStampedArray>("keyframes", 1);
+
     // Create SensorProcessor
     state_estimator = new StateEstimator();
 
@@ -39,6 +42,7 @@ int main (int argc, char** argv)
         state_estimator->quasiconstant_motion_model();
 
         pub_pose_estimate();
+        pub_keyframes_estimate();
 
         ros::spinOnce();
         loop_rate.sleep();
@@ -54,7 +58,7 @@ void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg)
 {
     state_estimator->odom_motion_model(odom_msg);
 
-    //pub_fake_pose_estimate(odom_msg);
+    pub_fake_pose_estimate(odom_msg);
 }
 
 void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg)
@@ -62,10 +66,11 @@ void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg)
     // Fake pose estimate from odometry
     geometry_msgs::PoseWithCovarianceStamped::Ptr estimated_pose_msg(new geometry_msgs::PoseWithCovarianceStamped);
     estimated_pose_msg->header = odom_msg->header;
+    estimated_pose_msg->header.frame_id = "world";
     estimated_pose_msg->pose = odom_msg->pose;
 
-    estimated_pose_msg->pose.covariance[0] = 10;
-    estimated_pose_msg->pose.covariance[6+1] = 10;
+    estimated_pose_msg->pose.covariance[0] = 1;
+    estimated_pose_msg->pose.covariance[6+1] = 1;
     estimated_pose_msg->pose.covariance[12+2] = 0.1;
     estimated_pose_msg->pose.covariance[18+3] = 0.01;
     estimated_pose_msg->pose.covariance[24+4] = 0.01;
@@ -84,4 +89,15 @@ void pub_pose_estimate()
     state_estimator->estimated_pose(current_pose);
 
     pub_pose.publish(current_pose);
+}
+
+void pub_keyframes_estimate()
+{
+    lara_rgbd_msgs::PoseWithCovarianceStampedArray keyframes;
+
+    keyframes.header.stamp = ros::Time::now();
+    keyframes.header.frame_id = "world";
+    state_estimator->keyframes(keyframes);
+
+    pub_keyframes.publish(keyframes);
 }

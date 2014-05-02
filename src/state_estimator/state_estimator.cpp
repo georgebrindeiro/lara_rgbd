@@ -79,7 +79,7 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
         // Separate good matches and go through cloud matching model equations
     }
 
-    if((num_keyframes_ == 0) || !matches_found)
+    if((num_keyframes_ == 0)/* || !matches_found*/)
     {
         // Augment state vector with initial pose
         augment_state_vector_();
@@ -113,6 +113,46 @@ void StateEstimator::estimated_pose(geometry_msgs::PoseWithCovarianceStamped& cu
     current_pose.pose.covariance[18+3] = 0.01;
     current_pose.pose.covariance[24+4] = 0.01;
     current_pose.pose.covariance[30+5] = 0.01;
+}
+
+void StateEstimator::keyframes(lara_rgbd_msgs::PoseWithCovarianceStampedArray& keyframes)
+{
+    char frame_id[20];
+
+    for(int i = 0; i < num_keyframes_; i++)
+    {
+        geometry_msgs::PoseWithCovarianceStamped keyframe;
+
+        sprintf(frame_id, "/base_link_%d", i);
+
+        keyframe.header.frame_id = frame_id;
+        keyframe.header.stamp = keyframes.header.stamp;
+
+        keyframe.pose.pose.position.x = keyframes_pose_[i](0);
+        keyframe.pose.pose.position.y = keyframes_pose_[i](1);
+        keyframe.pose.pose.position.z = keyframes_pose_[i](2);
+        keyframe.pose.pose.orientation.w = keyframes_pose_[i](3);
+        keyframe.pose.pose.orientation.x = keyframes_pose_[i](4);
+        keyframe.pose.pose.orientation.y = keyframes_pose_[i](5);
+        keyframe.pose.pose.orientation.z = keyframes_pose_[i](6);
+
+        ROS_DEBUG("keyframes not fully implemented. returning fixed covariance for orientation!");
+        for(int ii = 0; ii < 3; ii++)
+        {
+            for(int jj = 0; jj < 3; jj++)
+            {
+                keyframe.pose.covariance[6*ii+jj] = keyframes_cov_[i](ii,jj);
+            }
+        }
+
+        keyframe.pose.covariance[18+3] = 0.01;
+        keyframe.pose.covariance[24+4] = 0.01;
+        keyframe.pose.covariance[30+5] = 0.01;
+
+        //ROS_INFO_STREAM_THROTTLE(1, "keyframe #" << i << ":\n\n" << keyframe << "\n");
+
+        keyframes.poses.push_back(keyframe);
+    }
 }
 
 void StateEstimator::augment_state_vector_()
