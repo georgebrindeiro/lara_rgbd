@@ -21,6 +21,7 @@
 #include <cv_bridge/cv_bridge.h>
 
 #include <pcl/filters/extract_indices.h>
+#include <pcl/filters/filter.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/ros/conversions.h>

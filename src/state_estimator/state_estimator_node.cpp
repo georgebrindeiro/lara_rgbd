@@ -58,7 +58,7 @@ void odom_cb(const nav_msgs::Odometry::ConstPtr& odom_msg)
 {
     state_estimator->odom_motion_model(odom_msg);
 
-    pub_fake_pose_estimate(odom_msg);
+    //pub_fake_pose_estimate(odom_msg);
 }
 
 void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg)

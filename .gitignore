@@ -15,6 +15,9 @@
 # Bag files and datasets
 /data/rgbd_dataset/datasets/*
 
+# Geany project files
+*.geany
+
 # Stuff that isn't ready yet
 
 

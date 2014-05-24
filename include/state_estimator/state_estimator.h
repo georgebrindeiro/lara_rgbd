@@ -28,6 +28,14 @@
 
 #include <lara_rgbd_msgs/PoseWithCovarianceStampedArray.h>
 
+// PCL Registration headers
+#include <pcl/filters/extract_indices.h>
+#include <pcl/sample_consensus/ransac.h>
+#include <pcl/sample_consensus/sac_model_registration.h>
+
+// kdtree search
+#include <pcl/kdtree/kdtree_flann.h>
+
 class StateEstimator
 {
     public:
@@ -104,7 +112,8 @@ class StateEstimator
         int num_keyframes_;                                     /**< Number of keyframes added to history */
         std::vector< Eigen::VectorXf > keyframes_pose_;         /**< State vector for keyframes */
         std::vector< Eigen::MatrixXf > keyframes_cov_;          /**< Covariance matrix for keyframes */
-        std::vector< pcl::PCLPointCloud2 > keyframes_cloud_;    /**< Feature cloud for keyframes */
+        std::vector< pcl::PointCloud<pcl::PointXYZRGB> > keyframes_cloud_;    /**< Feature cloud for keyframes */
+        std::vector< pcl::KdTreeFLANN<pcl::PointXYZRGB> > keyframes_kdtree_;   /**< Feature kdtree for keyframes */
 };
 
 #endif  // LARA_RGBD_STATE_ESTIMATOR_H_

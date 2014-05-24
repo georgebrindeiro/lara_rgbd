@@ -64,22 +64,133 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
     Eigen::VectorXf current_pose = state_estimate_.head(7);
     Eigen::MatrixXf current_cov = cov_state_estimate_.block(0,0,7,7);
 
-    // Convert cloud_msg to PCL format
-    pcl::PCLPointCloud2::Ptr current_cloud(new pcl::PCLPointCloud2);
+    // Separate pose for transform calculation
+    Eigen::Vector3f p(current_pose[0], current_pose[1], current_pose[2]);
+    Eigen::Quaternionf q(current_pose[3],current_pose[4],current_pose[5],current_pose[6]);
 
-    pcl_conversions::toPCL(*cloud_msg, *current_cloud);
+    // Convert cloud_msg to PCL format
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr current_cloud_ptr(new pcl::PointCloud<pcl::PointXYZRGB>);
+
+    pcl::fromROSMsg(*cloud_msg, *current_cloud_ptr);
+
+    // Turn into ConstPtr (probably in the dumbest way possible)
+    pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr current_cloud(current_cloud_ptr);
 
     // Look for matches in pose history
     bool matches_found = false;
 
     for(int i = 0; i < num_keyframes_; i++)
     {
+        // Grab past pose
+        Eigen::VectorXf past_pose = keyframes_pose_[i];
+
+        // Get past cloud kdtree
+        pcl::KdTreeFLANN<pcl::PointXYZRGB> kdtree = keyframes_kdtree_[i];
+
+        // Coordinate transform current cloud to past cloud coordinate frame
+        Eigen::Vector3f p_star(past_pose[0], past_pose[1], past_pose[2]);
+        Eigen::Quaternionf q_star(past_pose[3], past_pose[4], past_pose[5], past_pose[6]);
+
+        Eigen::Matrix3f R = (q_star*q.inverse()).toRotationMatrix();
+        Eigen::Vector3f T = p_star-p;
+
+        ROS_INFO_STREAM("R" << std::endl << R);
+        ROS_INFO_STREAM("T" << std::endl << T);
+
+        // Need to find correspondences between current_cloud and past_cloud before attempting to align...
+        // Use kdtree radius search to do that
+        std::vector<int> indices_src;
+        std::vector<int> indices_tgt;
+
+        float radius = 0.1;
+
+        Eigen::Vector3f c_j;
+        pcl::PointXYZRGB search_point;
+
+        for(int j = 0; j < current_cloud->size(); j++)
+        {
+            // Check if NaN
+            //if(!pcl_isfinite((*current_cloud)[j].x) || !pcl_isfinite((*current_cloud)[j].y) || !pcl_isfinite((*current_cloud)[j].z))
+            //    continue;
+
+            // Get one point in current cloud
+            c_j[0] = (*current_cloud)[j].x;
+            c_j[1] = (*current_cloud)[j].y;
+            c_j[2] = (*current_cloud)[j].z;
+
+            ROS_INFO_STREAM("c_" << j << std::endl << c_j);
+
+            // Transform to past cloud coordinate frame
+            c_j = R*c_j+T;
+
+            ROS_INFO_STREAM("c_" << j << "*" << std::endl << c_j);
+
+            // Change to pcl format and add rgb info
+            search_point.x = c_j[0];
+            search_point.y = c_j[1];
+            search_point.z = c_j[2];
+            search_point.r = (*current_cloud)[j].r;
+            search_point.g = (*current_cloud)[j].g;
+            search_point.b = (*current_cloud)[j].b;
+
+            std::vector<int> point_idx_vector;
+            std::vector<float> point_sq_dist_vector;
+
+            int point_idx = -1;
+            float point_sq_dist = -1;
+
+            ROS_INFO("still alive!");
+
+            if(kdtree.radiusSearch(search_point, radius, point_idx_vector, point_sq_dist_vector) > 0)
+            {
+                // Get first nearest neighbor in radius search results
+                point_idx = point_idx_vector[0];
+                point_sq_dist = point_sq_dist_vector[0];
+
+                ROS_DEBUG("Found correspondence! old_idx: %d new_idx: %d (sq_dist=%f)", j, point_idx, point_sq_dist);
+                indices_src.push_back(j);
+                indices_tgt.push_back(point_idx);
+            }
+            else
+            {
+                ROS_DEBUG("Found no correspondences for old_idx: %d with radius %f", j, radius);
+            }
+        }
+
         // Attempt RANSAC alignment
+        ROS_INFO_STREAM("Attempting to align current cloud with keyframe #" << i);
+
+        // RANSAC Registration Model
+        pcl::SampleConsensusModelRegistration<pcl::PointXYZRGB>::Ptr model_r(new pcl::SampleConsensusModelRegistration<pcl::PointXYZRGB>(current_cloud));
+
+        // Set target cloud
+        pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr past_cloud(&keyframes_cloud_[i]);
+        model_r->setInputTarget(past_cloud, indices_tgt);
+
+        // Use model in RANSAC framework and set parameters
+        pcl::RandomSampleConsensus<pcl::PointXYZRGB> ransac(model_r);
+        ransac.setDistanceThreshold (0.1);
+        ransac.computeModel(1);
+
+        Eigen::VectorXf coeffs;
+        ransac.getModelCoefficients(coeffs);
+        assert(coeffs.size() == 16);
+
+        // Resulting transform
+        Eigen::Matrix4f transform = Eigen::Map<Eigen::Matrix4f>(coeffs.data(),4,4);
+
+        std::vector<int> inliers;
+        ransac.getInliers(inliers);
+
+        ROS_INFO_STREAM("Found " << inliers.size()   << " inliers!");
+
+        ROS_INFO_STREAM("transform: " << std::endl << transform);
+
         // Check if good match
         // Separate good matches and go through cloud matching model equations
     }
 
-    if((num_keyframes_ == 0)/* || !matches_found*/)
+    if((num_keyframes_ == 0) || matches_found)
     {
         // Augment state vector with initial pose
         augment_state_vector_();
@@ -87,10 +198,15 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
         ROS_DEBUG_STREAM("aug init state" << std::endl << state_estimate_);
         ROS_DEBUG_STREAM("aug init cov_state" << std::endl << cov_state_estimate_);
 
+        // Generate kdtree for feature cloud
+        pcl::KdTreeFLANN<pcl::PointXYZRGB> current_kdtree;
+        current_kdtree.setInputCloud(current_cloud);
+
         // Store keyframe
         keyframes_pose_.push_back(current_pose);
         keyframes_cov_.push_back(current_cov);
         keyframes_cloud_.push_back(*current_cloud);
+        keyframes_kdtree_.push_back(current_kdtree);
 
         num_keyframes_++;
     }

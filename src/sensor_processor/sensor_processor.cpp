@@ -70,8 +70,8 @@ void SensorProcessor::build_feature_cloud(const std::vector<cv::KeyPoint>& keypo
 {
     // Work with PCL compatible variables
     pcl::PointIndices::Ptr keypoint_indices(new pcl::PointIndices());
-    pcl::PCLPointCloud2::Ptr pcl_input(new pcl::PCLPointCloud2);
-    pcl::PCLPointCloud2::Ptr pcl_output(new pcl::PCLPointCloud2);
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr pcl_input(new pcl::PointCloud<pcl::PointXYZRGB>);
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr pcl_output(new pcl::PointCloud<pcl::PointXYZRGB>);
 
     // Convert keypoints to PCL format
     for(int i=0; i < keypoints.size(); i++)
@@ -83,20 +83,27 @@ void SensorProcessor::build_feature_cloud(const std::vector<cv::KeyPoint>& keypo
     }
 
     // Convert cloud_msg to PCL format
-    pcl_conversions::toPCL(*cloud_msg, *pcl_input);
+    pcl::fromROSMsg(*cloud_msg, *pcl_input);
 
     // Use ExtractIndices filter to build feature cloud
-    pcl::ExtractIndices<pcl::PCLPointCloud2> extract;
+    pcl::ExtractIndices< pcl::PointXYZRGB > extract;
 
     extract.setInputCloud(pcl_input);
     extract.setIndices(keypoint_indices);
     extract.setNegative(false);
     extract.filter(*pcl_output);
 
-    // Convert pcl_output to ROS format
-    pcl_conversions::fromPCL(*pcl_output, *feature_cloud_msg);
+    // Print out number of features in cloud for debugging
+    ROS_DEBUG("# feature cloud points (prior to NaN removal): %d", pcl_output->width * pcl_output->height);
+
+    // Remove NaNs from output?
+    std::vector<int> indices;
+    pcl::removeNaNFromPointCloud(*pcl_output, *pcl_output, indices);
 
     // Print out number of features in cloud for debugging
     ROS_DEBUG("# feature cloud points: %d", pcl_output->width * pcl_output->height);
+
+    // Convert pcl_output to ROS format
+    pcl::toROSMsg(*pcl_output, *feature_cloud_msg);
 }
 
