@@ -28,6 +28,9 @@
 
 #include <pcl_conversions/pcl_conversions.h>
 
+#include <pcl/keypoints/harris_3d.h>
+#include <pcl/features/pfhrgb.h>
+
 enum FeatureDetector {SURF};
 
 class SensorProcessor
@@ -37,6 +40,8 @@ class SensorProcessor
         {
             feature_detector_ = feature_detector;
             display_features_ = display_features;
+
+            initKeypointDescriptor();
 
             // Create a CV window for debugging
             if(display_features)
@@ -78,10 +83,32 @@ class SensorProcessor
                                  const sensor_msgs::PointCloud2::ConstPtr& cloud_msg,
                                  sensor_msgs::PointCloud2::Ptr& feature_cloud_msg);
 
+        // New features from feature_matching example
+        void initKeypointDescriptor();
+
+
+        /**
+         * @brief Detects key points in the input point cloud
+         * @param input the input point cloud
+         * @param keypoints the resulting key points. Note that they are not necessarily a subset of the input cloud
+         */
+        void detectKeypoints (pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints) const;
+
+        /**
+         * @brief extract descriptors for given key points
+         * @param input point cloud to be used for descriptor extraction
+         * @param keypoints locations where descriptors are to be extracted
+         * @param features resulting descriptors
+         */
+        void extractDescriptors (pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints, pcl::PointCloud<pcl::PFHRGBSignature250>::Ptr features);
+
     private:
         FeatureDetector feature_detector_;      /**< Indicates which feature detector we are using to process point clouds  */
 
         bool display_features_;                 /**< Indicates whether we want to the extracted keypoints in a CV window    */
+
+        boost::shared_ptr<pcl::Keypoint<pcl::PointXYZRGB, pcl::PointXYZI> > keypoint_detector_;
+        pcl::Feature<pcl::PointXYZRGB, pcl::PFHRGBSignature250>::Ptr feature_extractor_;
 };
 
 #endif  // LARA_RGBD_SENSOR_PROCESSOR_H_

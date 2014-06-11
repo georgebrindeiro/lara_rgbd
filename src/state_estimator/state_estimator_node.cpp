@@ -22,7 +22,8 @@ int main (int argc, char** argv)
     ros::NodeHandle nh;
 
     // Create a ROS subscriber for sensor data
-    ros::Subscriber sub_cloud = nh.subscribe("feature_cloud", 1, cloud_cb);
+    //ros::Subscriber sub_cloud = nh.subscribe("feature_cloud", 1, cloud_cb);
+    ros::Subscriber sub_cloud = nh.subscribe("/rgbd_dataset/kinect/depth_registered/points", 1, cloud_cb);
     ros::Subscriber sub_odom  = nh.subscribe("/rgbd_dataset/pioneer/odometry", 1, odom_cb);
 
     // Create a ROS publisher for estimated pose

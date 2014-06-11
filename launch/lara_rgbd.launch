@@ -4,8 +4,9 @@
     <!--*******************************           Includes          *******************************-->
 
     <include ns="rgbd_dataset" file="$(find lara_rgbd)/launch/rgbd_dataset.launch" />
-    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/sensor_processor.launch" />
-    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/state_estimator.launch" />
+    <!-- <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/sensor_processor.launch" />
+    <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/state_estimator.launch" /> -->
     <include ns="lara_rgbd"    file="$(find lara_rgbd)/launch/visualization.launch" />
+    <node ns="lara_rgbd" pkg="lara_rgbd" type="lara_rgbd" name="lara_rgbd" output="screen" /> <!-- launch-prefix="valgrind" /> -->
 
 </launch>

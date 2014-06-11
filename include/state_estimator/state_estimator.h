@@ -29,12 +29,23 @@
 #include <lara_rgbd_msgs/PoseWithCovarianceStampedArray.h>
 
 // PCL Registration headers
-#include <pcl/filters/extract_indices.h>
-#include <pcl/sample_consensus/ransac.h>
-#include <pcl/sample_consensus/sac_model_registration.h>
+//#include <pcl/filters/extract_indices.h>
+//#include <pcl/sample_consensus/ransac.h>
+//#include <pcl/sample_consensus/sac_model_registration.h>
 
 // kdtree search
-#include <pcl/kdtree/kdtree_flann.h>
+//#include <pcl/kdtree/kdtree_flann.h>
+
+// PCL features
+#include <pcl/features/normal_3d.h>
+
+// PCL visualizer
+#include <boost/thread/thread.hpp>
+#include <pcl/common/common_headers.h>
+#include <pcl/features/normal_3d.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/visualization/pcl_visualizer.h>
+#include <pcl/console/parse.h>
 
 class StateEstimator
 {
@@ -84,6 +95,20 @@ class StateEstimator
         */
         void cloud_measurement_model(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 
+        // From feature matching example
+        /**
+         * @brief find corresponding features based on some metric
+         * @param source source feature descriptors
+         * @param target target feature descriptors
+         * @param correspondences indices out of the target descriptors that correspond (nearest neighbor) to the source descriptors
+         */
+        //void findCorrespondences (typename pcl::PointCloud<FeatureType>::Ptr source, typename pcl::PointCloud<FeatureType>::Ptr target, std::vector<int>& correspondences) const;
+
+        /**
+         * @brief  remove non-consistent correspondences
+         */
+        //void filterCorrespondences ();
+
         /*!
         * @brief Repackages estimated pose into a ROS message for publishing
         *
@@ -112,8 +137,8 @@ class StateEstimator
         int num_keyframes_;                                     /**< Number of keyframes added to history */
         std::vector< Eigen::VectorXf > keyframes_pose_;         /**< State vector for keyframes */
         std::vector< Eigen::MatrixXf > keyframes_cov_;          /**< Covariance matrix for keyframes */
-        std::vector< pcl::PointCloud<pcl::PointXYZRGB> > keyframes_cloud_;    /**< Feature cloud for keyframes */
-        std::vector< pcl::KdTreeFLANN<pcl::PointXYZRGB> > keyframes_kdtree_;   /**< Feature kdtree for keyframes */
+        //std::vector< pcl::PointCloud<pcl::PointXYZRGB> > keyframes_cloud_;    /**< Feature cloud for keyframes */
+        //std::vector< pcl::KdTreeFLANN<pcl::PointXYZRGB> > keyframes_kdtree_;   /**< Feature kdtree for keyframes */
 };
 
 #endif  // LARA_RGBD_STATE_ESTIMATOR_H_

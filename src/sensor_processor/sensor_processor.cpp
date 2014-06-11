@@ -107,3 +107,55 @@ void SensorProcessor::build_feature_cloud(const std::vector<cv::KeyPoint>& keypo
     pcl::toROSMsg(*pcl_output, *feature_cloud_msg);
 }
 
+
+void SensorProcessor::initKeypointDescriptor()
+{
+    pcl::HarrisKeypoint3D<pcl::PointXYZRGB,pcl::PointXYZI>* harris3D = new pcl::HarrisKeypoint3D<pcl::PointXYZRGB,pcl::PointXYZI> (pcl::HarrisKeypoint3D<pcl::PointXYZRGB,pcl::PointXYZI>::HARRIS);
+    harris3D->setNonMaxSupression (true);
+    harris3D->setRadius (0.01f);
+    harris3D->setRadiusSearch (0.01f);
+    harris3D->setMethod(pcl::HarrisKeypoint3D<pcl::PointXYZRGB,pcl::PointXYZI>::HARRIS);
+    keypoint_detector_.reset(harris3D);
+
+    feature_extractor_.reset(new pcl::PFHRGBEstimation<pcl::PointXYZRGB, pcl::Normal, pcl::PFHRGBSignature250>);
+    feature_extractor_->setKSearch(50);
+}
+
+void SensorProcessor::detectKeypoints (pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints) const
+{
+  std::cout << "keypoint detection..." << std::flush;
+  keypoint_detector_->setInputCloud(input);
+  keypoint_detector_->compute(*keypoints);
+  std::cout << "OK. keypoints found: " << keypoints->points.size() << std::endl;
+}
+
+void SensorProcessor::extractDescriptors (pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints, pcl::PointCloud<pcl::PFHRGBSignature250>::Ptr features)
+{
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr kpts(new pcl::PointCloud<pcl::PointXYZRGB>);
+  kpts->points.resize(keypoints->points.size());
+
+  pcl::copyPointCloud(*keypoints, *kpts);
+
+  pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, pcl::PFHRGBSignature250>::Ptr feature_from_normals = boost::dynamic_pointer_cast<pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, pcl::PFHRGBSignature250> > (feature_extractor_);
+
+  feature_extractor_->setSearchSurface(input);
+  feature_extractor_->setInputCloud(kpts);
+
+  if (feature_from_normals)
+  //if (boost::dynamic_pointer_cast<typename pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, pcl::PFHRGBSignature250> > (feature_extractor_))
+  {
+    std::cout << "normal estimation..." << std::flush;
+    pcl::PointCloud<pcl::Normal>::Ptr normals (new  pcl::PointCloud<pcl::Normal>);
+    pcl::NormalEstimation<pcl::PointXYZRGB, pcl::Normal> normal_estimation;
+    normal_estimation.setSearchMethod (pcl::search::Search<pcl::PointXYZRGB>::Ptr (new pcl::search::KdTree<pcl::PointXYZRGB>));
+    normal_estimation.setRadiusSearch (0.01);
+    normal_estimation.setInputCloud (input);
+    normal_estimation.compute (*normals);
+    feature_from_normals->setInputNormals(normals);
+    std::cout << "OK" << std::endl;
+  }
+
+  std::cout << "descriptor extraction..." << std::flush;
+  feature_extractor_->compute (*features);
+  std::cout << "OK" << std::endl;
+}

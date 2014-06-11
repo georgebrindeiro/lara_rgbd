@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Image
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -54,41 +54,13 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
-          Value: true
-        kinect:
-          Value: true
-        laser:
-          Value: true
-        odom:
-          Value: true
-        openni_camera:
-          Value: true
-        openni_depth_frame:
-          Value: true
-        openni_depth_optical_frame:
-          Value: true
-        openni_rgb_frame:
-          Value: true
-        openni_rgb_optical_frame:
-          Value: true
-        world:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        world:
-          kinect:
-            openni_camera:
-              openni_depth_frame:
-                openni_depth_optical_frame:
-                  {}
-              openni_rgb_frame:
-                openni_rgb_optical_frame:
-                  {}
+        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -180,11 +152,11 @@ Visualization Manager:
     - Alpha: 0.5
       Class: rviz_lara_rgbd/PoseWithCovarianceArray
       Color: 255; 255; 0
-      Enabled: true
+      Enabled: false
       Name: PoseWithCovarianceArray
       Scale: 1
       Topic: /lara_rgbd/keyframes
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

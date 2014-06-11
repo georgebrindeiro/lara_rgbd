@@ -40,7 +40,7 @@ void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
     print_cloud_msg(cloud_msg);
 
     // Extract RGB image from cloud
-    cv::Mat img;
+    /*cv::Mat img;
     sensor_processor->extract_rgb_image(cloud_msg, img);
 
     // Detect keypoints from RGB image
@@ -49,7 +49,24 @@ void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
 
     // Build feature cloud from keypoints
     sensor_msgs::PointCloud2::Ptr feature_cloud_msg(new sensor_msgs::PointCloud2);
-    sensor_processor->build_feature_cloud(keypoints, cloud_msg, feature_cloud_msg);
+    sensor_processor->build_feature_cloud(keypoints, cloud_msg, feature_cloud_msg);*/
+
+    pcl::PointCloud<pcl::PointXYZRGB> cloud;
+
+    pcl::fromROSMsg(*cloud_msg, cloud);
+
+    pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input(&cloud);
+    pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints(new pcl::PointCloud<pcl::PointXYZI>());
+
+    // Detect Harris3D keypoints
+    sensor_processor->detectKeypoints (input, keypoints);
+
+    // Extract PFHRGB descriptors
+    //extractDescriptors (pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints, pcl::PointCloud<pcl::PFHRGBSignature250>::Ptr features);
+
+    sensor_msgs::PointCloud2::Ptr feature_cloud_msg(new sensor_msgs::PointCloud2);
+
+    pcl::toROSMsg(*keypoints, *feature_cloud_msg);
 
     // Publish the data
     pub_feature_cloud(feature_cloud_msg);

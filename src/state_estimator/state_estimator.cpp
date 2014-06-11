@@ -56,9 +56,143 @@ void StateEstimator::odom_motion_model(const nav_msgs::Odometry::ConstPtr& odom_
     ROS_DEBUG("Odometry motion model still not implemented!");
 }
 
+boost::shared_ptr<pcl::visualization::PCLVisualizer> normalsVis (
+    pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr cloud, pcl::PointCloud<pcl::Normal>::ConstPtr normals)
+{
+  // --------------------------------------------------------
+  // -----Open 3D viewer and add point cloud and normals-----
+  // --------------------------------------------------------
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
+  viewer->setBackgroundColor (0, 0, 0);
+  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(cloud);
+  viewer->addPointCloud<pcl::PointXYZRGB> (cloud, rgb, "sample cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "sample cloud");
+  viewer->addPointCloudNormals<pcl::PointXYZRGB, pcl::Normal> (cloud, normals, 10, 0.05, "normals");
+  viewer->addCoordinateSystem (1.0, "global");
+  viewer->initCameraParameters ();
+  return (viewer);
+}
+
 void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
 {
+    // Convert cloud_msg to PCL format
+    pcl::PointCloud<pcl::PointXYZRGB>* current_cloud_ptr = new pcl::PointCloud<pcl::PointXYZRGB>();
+
+    pcl::fromROSMsg(*cloud_msg, *current_cloud_ptr);
+
+    pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr current_cloud(current_cloud_ptr);
+
+    // for: every keyframe
+
+        // Correspondence Estimation. if: not enough, next keyframe
+
+        // Correspondence Rejection. if: not enough, next keyframe
+
+        // Transformation Estimation. if: not enough, next keyframe
+
+        // Incremental Registration.
+
+    // if: no matches, add keyframe to storage.
+    // problem: we can only change the pose when overlap, which we can only hope will happen often.
+    // problem: every pose with overlap will be stored. should we store only with the right number of inliers/outliers?
+    // problem: should we only store different points? probably not.
+}
+
+/*template<typename FeatureType>
+void ICCVTutorial<FeatureType>::detectKeypoints (typename pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints) const
+{
+  cout << "keypoint detection..." << std::flush;
+  keypoint_detector_->setInputCloud(input);
+  keypoint_detector_->compute(*keypoints);
+  cout << "OK. keypoints found: " << keypoints->points.size() << endl;
+}
+
+template<typename FeatureType>
+void ICCVTutorial<FeatureType>::extractDescriptors (typename pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr input, typename pcl::PointCloud<pcl::PointXYZI>::Ptr keypoints, typename pcl::PointCloud<FeatureType>::Ptr features)
+{
+  typename pcl::PointCloud<pcl::PointXYZRGB>::Ptr kpts(new pcl::PointCloud<pcl::PointXYZRGB>);
+  kpts->points.resize(keypoints->points.size());
+
+  pcl::copyPointCloud(*keypoints, *kpts);
+
+  typename pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, FeatureType>::Ptr feature_from_normals = boost::dynamic_pointer_cast<pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, FeatureType> > (feature_extractor_);
+
+  feature_extractor_->setSearchSurface(input);
+  feature_extractor_->setInputCloud(kpts);
+
+  if (feature_from_normals)
+  //if (boost::dynamic_pointer_cast<typename pcl::FeatureFromNormals<pcl::PointXYZRGB, pcl::Normal, FeatureType> > (feature_extractor_))
+  {
+    cout << "normal estimation..." << std::flush;
+    typename pcl::PointCloud<pcl::Normal>::Ptr normals (new  pcl::PointCloud<pcl::Normal>);
+    pcl::NormalEstimation<pcl::PointXYZRGB, pcl::Normal> normal_estimation;
+    normal_estimation.setSearchMethod (pcl::search::Search<pcl::PointXYZRGB>::Ptr (new pcl::search::KdTree<pcl::PointXYZRGB>));
+    normal_estimation.setRadiusSearch (0.01);
+    normal_estimation.setInputCloud (input);
+    normal_estimation.compute (*normals);
+    feature_from_normals->setInputNormals(normals);
+    cout << "OK" << endl;
+  }
+
+  cout << "descriptor extraction..." << std::flush;
+  feature_extractor_->compute (*features);
+  cout << "OK" << endl;
+}
+
+template<typename FeatureType>
+void ICCVTutorial<FeatureType>::findCorrespondences (typename pcl::PointCloud<FeatureType>::Ptr source, typename pcl::PointCloud<FeatureType>::Ptr target, std::vector<int>& correspondences) const
+{
+  cout << "correspondence assignment..." << std::flush;
+  correspondences.resize (source->size());
+
+  // Use a KdTree to search for the nearest matches in feature space
+  pcl::KdTreeFLANN<FeatureType> descriptor_kdtree;
+  descriptor_kdtree.setInputCloud (target);
+
+  // Find the index of the best match for each keypoint, and store it in "correspondences_out"
+  const int k = 1;
+  std::vector<int> k_indices (k);
+  std::vector<float> k_squared_distances (k);
+  for (int i = 0; i < static_cast<int> (source->size ()); ++i)
+  {
+    descriptor_kdtree.nearestKSearch (*source, i, k, k_indices, k_squared_distances);
+    correspondences[i] = k_indices[0];
+  }
+  cout << "OK" << endl;
+}
+
+template<typename FeatureType>
+void ICCVTutorial<FeatureType>::filterCorrespondences ()
+{
+  cout << "correspondence rejection..." << std::flush;
+  std::vector<std::pair<unsigned, unsigned> > correspondences;
+  for (unsigned cIdx = 0; cIdx < source2target_.size (); ++cIdx)
+    if (target2source_[source2target_[cIdx]] == static_cast<int> (cIdx))
+      correspondences.push_back(std::make_pair(cIdx, source2target_[cIdx]));
+
+  correspondences_->resize (correspondences.size());
+  for (unsigned cIdx = 0; cIdx < correspondences.size(); ++cIdx)
+  {
+    (*correspondences_)[cIdx].index_query = correspondences[cIdx].first;
+    (*correspondences_)[cIdx].index_match = correspondences[cIdx].second;
+  }
+
+  pcl::registration::CorrespondenceRejectorSampleConsensus<pcl::PointXYZI> rejector;
+  rejector.setInputCloud(source_keypoints_);
+  rejector.setTargetCloud(target_keypoints_);
+  rejector.setInputCorrespondences(correspondences_);
+  rejector.getCorrespondences(*correspondences_);
+  cout << "OK" << endl;
+}*/
+
+/*void StateEstimator::old_cloud_measurement_model(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg)
+{
     ROS_DEBUG("Cloud matching measurement model still not implemented!");
+    //1. Correspondence Estimation
+    //2. Correspondence Rejection
+    //3. Transformation Estimation
+    //4. Incremental Registration
+    static int calls = 0;
 
     // Grab current pose and covariance
     Eigen::VectorXf current_pose = state_estimate_.head(7);
@@ -69,7 +203,7 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
     Eigen::Quaternionf q(current_pose[3],current_pose[4],current_pose[5],current_pose[6]);
 
     // Convert cloud_msg to PCL format
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr current_cloud_ptr(new pcl::PointCloud<pcl::PointXYZRGB>);
+    pcl::PointCloud<pcl::PointXYZRGB>* current_cloud_ptr = new pcl::PointCloud<pcl::PointXYZRGB>();
 
     pcl::fromROSMsg(*cloud_msg, *current_cloud_ptr);
 
@@ -109,21 +243,27 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
 
         for(int j = 0; j < current_cloud->size(); j++)
         {
-            // Check if NaN
-            //if(!pcl_isfinite((*current_cloud)[j].x) || !pcl_isfinite((*current_cloud)[j].y) || !pcl_isfinite((*current_cloud)[j].z))
-            //    continue;
-
             // Get one point in current cloud
             c_j[0] = (*current_cloud)[j].x;
             c_j[1] = (*current_cloud)[j].y;
             c_j[2] = (*current_cloud)[j].z;
 
-            ROS_INFO_STREAM("c_" << j << std::endl << c_j);
+            //ROS_INFO_STREAM("c_" << j << std::endl << c_j);
+            //ROS_INFO_STREAM("current_cloud[" << j << "](x,y,z)" << std::endl
+            //             << "(" << (*current_cloud)[j].x << "," << (*current_cloud)[j].y << "," << (*current_cloud)[j].z << ")");
 
             // Transform to past cloud coordinate frame
             c_j = R*c_j+T;
 
-            ROS_INFO_STREAM("c_" << j << "*" << std::endl << c_j);
+            // Store this point back in the current cloud
+            //(*current_cloud)[j].x = c_j[0];
+            //(*current_cloud)[j].y = c_j[1];
+            //(*current_cloud)[j].z = c_j[2];
+
+
+            //ROS_INFO_STREAM("c_" << j << std::endl << c_j);
+            //ROS_INFO_STREAM("current_cloud[" << j << "](x,y,z)" << std::endl
+            //             << "(" << (*current_cloud)[j].x << "," << (*current_cloud)[j].y << "," << (*current_cloud)[j].z << ")");
 
             // Change to pcl format and add rgb info
             search_point.x = c_j[0];
@@ -139,7 +279,7 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
             int point_idx = -1;
             float point_sq_dist = -1;
 
-            ROS_INFO("still alive!");
+            //ROS_INFO("still alive!");
 
             if(kdtree.radiusSearch(search_point, radius, point_idx_vector, point_sq_dist_vector) > 0)
             {
@@ -147,18 +287,21 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
                 point_idx = point_idx_vector[0];
                 point_sq_dist = point_sq_dist_vector[0];
 
-                ROS_DEBUG("Found correspondence! old_idx: %d new_idx: %d (sq_dist=%f)", j, point_idx, point_sq_dist);
+                //ROS_DEBUG("Found correspondence! old_idx: %d new_idx: %d (sq_dist=%f)", j, point_idx, point_sq_dist);
                 indices_src.push_back(j);
                 indices_tgt.push_back(point_idx);
             }
             else
             {
-                ROS_DEBUG("Found no correspondences for old_idx: %d with radius %f", j, radius);
+                //ROS_DEBUG("Found no correspondences for old_idx: %d with radius %f", j, radius);
             }
         }
 
         // Attempt RANSAC alignment
-        ROS_INFO_STREAM("Attempting to align current cloud with keyframe #" << i);
+        ROS_INFO_STREAM("NOT attempting to align current cloud with keyframe #" << i << "(call " << calls << ")");
+
+        // For now, matches_found means we have correspondences. Later it will be whether there was a good RANSAC transform found
+        matches_found = (indices_src.size() > 0) ? true : false;
 
         // RANSAC Registration Model
         pcl::SampleConsensusModelRegistration<pcl::PointXYZRGB>::Ptr model_r(new pcl::SampleConsensusModelRegistration<pcl::PointXYZRGB>(current_cloud));
@@ -190,7 +333,7 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
         // Separate good matches and go through cloud matching model equations
     }
 
-    if((num_keyframes_ == 0) || matches_found)
+    if((num_keyframes_ == 0) || !matches_found)
     {
         // Augment state vector with initial pose
         augment_state_vector_();
@@ -210,7 +353,9 @@ void StateEstimator::cloud_measurement_model(const sensor_msgs::PointCloud2::Con
 
         num_keyframes_++;
     }
-}
+    ROS_INFO_STREAM("Num keyframes: " << num_keyframes_);
+    ROS_INFO_STREAM("Finished call #" << calls++);
+}*/
 
 void StateEstimator::estimated_pose(geometry_msgs::PoseWithCovarianceStamped& current_pose)
 {

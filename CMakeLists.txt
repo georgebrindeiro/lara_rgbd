@@ -87,11 +87,17 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(sensor_processor src/sensor_processor/sensor_processor_node.cpp src/sensor_processor/sensor_processor.cpp)
-target_link_libraries(sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+add_executable(lara_rgbd src/lara_rgbd/lara_rgbd_node.cpp src/lara_rgbd/sensor_processor/sensor_processor.cpp)
+target_link_libraries(lara_rgbd ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
-add_executable(state_estimator src/state_estimator/state_estimator_node.cpp src/state_estimator/state_estimator.cpp)
-target_link_libraries(state_estimator ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+#add_executable(sensor_processor src/sensor_processor/sensor_processor_node.cpp src/sensor_processor/sensor_processor.cpp)
+#target_link_libraries(sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+
+#add_executable(state_estimator src/state_estimator/state_estimator_node.cpp src/state_estimator/state_estimator.cpp)
+#target_link_libraries(state_estimator ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+
+#add_executable(new_sensor_processor src/sensor_processor/new_sensor_processor_node.cpp)
+#target_link_libraries(new_sensor_processor ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #add_executable(hs_map_manager src/MapManager/MapManager.cpp)
 #target_link_libraries(hs_map_manager ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
