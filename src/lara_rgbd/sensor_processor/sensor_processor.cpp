@@ -39,9 +39,10 @@ pcl::PointCloud<pcl::PointXYZRGB> SensorProcessor::dequeue()
     return cloud;
 }
 
-bool SensorProcessor::process(std::pair< pcl::PointCloud<pcl::PointXYZRGB>, pcl::PointCloud<pcl::PointWithScale> >& processed_clouds)
+bool SensorProcessor::process(pcl::PointCloud<pcl::PointWithScale>& keypoint_cloud,
+                              pcl::PointCloud<pcl::PFHRGBSignature250>& feature_cloud)
 {
-    std::cout << "process in" << std::endl;
+    //std::cout << "process in" << std::endl;
 
     if(processing_queue_.size() > 0)
     {
@@ -98,11 +99,12 @@ bool SensorProcessor::process(std::pair< pcl::PointCloud<pcl::PointXYZRGB>, pcl:
         keypoints->header = cloud->header;
         features->header = cloud->header;
 
-        processed_clouds = std::make_pair< pcl::PointCloud<pcl::PointXYZRGB>, pcl::PointCloud<pcl::PointWithScale> >(*cloud, *keypoints);
+        keypoint_cloud = *keypoints;
+        feature_cloud = *features;
         std::cout << "process out true" << std::endl;
         return true;
     }
 
-    std::cout << "process out false" << std::endl;
+    //std::cout << "process out false" << std::endl;
     return false;
 }

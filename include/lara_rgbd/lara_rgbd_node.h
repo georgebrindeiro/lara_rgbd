@@ -23,11 +23,20 @@
 #include <pcl_conversions/pcl_conversions.h>
 
 #include <lara_rgbd/sensor_processor/sensor_processor.h>
+#include <lara_rgbd/state_estimator/state_estimator.h>
+#include <lara_rgbd/map_manager/map_manager.h>
 
 // ROS Subscriber Callbacks
 void cloud_cb(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 
-ros::Publisher pub_feature_cloud;
+// ROS Publisher Functions
+void pub_fake_pose_estimate(const nav_msgs::Odometry::ConstPtr& odom_msg);
+void pub_pose_estimate();
+void pub_keyframes_estimate();
+void pub_feature_cloud_estimate();
 
+ros::Publisher pub_feature_cloud;
+ros::Publisher pub_pose;
+ros::Publisher pub_keyframes;
 
 #endif  // LARA_RGBD_SENSOR_PROCER_NODE_H_

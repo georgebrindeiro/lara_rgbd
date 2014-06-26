@@ -65,7 +65,7 @@ catkin_package(
 # include_directories(include)
 include_directories(
   include
-  ${catkin_INCLUDE_DIRS} 
+  ${catkin_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
 )
@@ -87,7 +87,10 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(lara_rgbd src/lara_rgbd/lara_rgbd_node.cpp src/lara_rgbd/sensor_processor/sensor_processor.cpp)
+add_executable(lara_rgbd src/lara_rgbd/lara_rgbd_node.cpp
+                         src/lara_rgbd/sensor_processor/sensor_processor.cpp
+                         src/lara_rgbd/state_estimator/state_estimator.cpp
+                         src/lara_rgbd/map_manager/map_manager.cpp)
 target_link_libraries(lara_rgbd ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 #add_executable(sensor_processor src/sensor_processor/sensor_processor_node.cpp src/sensor_processor/sensor_processor.cpp)

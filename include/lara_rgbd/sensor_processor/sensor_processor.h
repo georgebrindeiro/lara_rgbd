@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <queue>
-#include <utility>
 
 class SensorProcessor
 {
@@ -22,7 +21,8 @@ class SensorProcessor
         }
 
         bool enqueue(const pcl::PointCloud<pcl::PointXYZRGB>& cloud);
-        bool process(std::pair< pcl::PointCloud<pcl::PointXYZRGB>, pcl::PointCloud<pcl::PointWithScale> >& processed_clouds);
+        bool process(pcl::PointCloud<pcl::PointWithScale>& keypoint_cloud,
+                     pcl::PointCloud<pcl::PFHRGBSignature250>& feature_cloud);
 
     private:
         void init();

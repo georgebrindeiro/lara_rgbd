@@ -26,34 +26,11 @@
 
 #include <Eigen/Dense>
 
-#include <lara_rgbd_msgs/PoseWithCovarianceStampedArray.h>
-
-// PCL Registration headers
-//#include <pcl/filters/extract_indices.h>
-//#include <pcl/sample_consensus/ransac.h>
-//#include <pcl/sample_consensus/sac_model_registration.h>
-
-// kdtree search
-//#include <pcl/kdtree/kdtree_flann.h>
-
-// PCL features
-#include <pcl/features/normal_3d.h>
-
-// PCL visualizer
-#include <boost/thread/thread.hpp>
-#include <pcl/common/common_headers.h>
-#include <pcl/features/normal_3d.h>
-#include <pcl/io/pcd_io.h>
-#include <pcl/visualization/pcl_visualizer.h>
-#include <pcl/console/parse.h>
-
 class StateEstimator
 {
     public:
         StateEstimator()
         {
-            num_keyframes_ = 0;
-
             init_state_estimate();
         }
 
@@ -66,6 +43,11 @@ class StateEstimator
         * SLAM, by assigning the initial pose as the map origin with a fixed covariance.
         */
         void init_state_estimate();
+
+        inline void predict()
+        {
+            quasiconstant_motion_model();
+        }
 
         /*!
         * @brief Updates the state estimate according to the Quasiconstant Motion Model
@@ -95,20 +77,6 @@ class StateEstimator
         */
         void cloud_measurement_model(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg);
 
-        // From feature matching example
-        /**
-         * @brief find corresponding features based on some metric
-         * @param source source feature descriptors
-         * @param target target feature descriptors
-         * @param correspondences indices out of the target descriptors that correspond (nearest neighbor) to the source descriptors
-         */
-        //void findCorrespondences (typename pcl::PointCloud<FeatureType>::Ptr source, typename pcl::PointCloud<FeatureType>::Ptr target, std::vector<int>& correspondences) const;
-
-        /**
-         * @brief  remove non-consistent correspondences
-         */
-        //void filterCorrespondences ();
-
         /*!
         * @brief Repackages estimated pose into a ROS message for publishing
         *
@@ -116,12 +84,13 @@ class StateEstimator
         */
         void estimated_pose(geometry_msgs::PoseWithCovarianceStamped& current_pose);
 
-        /*!
-        * @brief Repackages keyframes into a ROS message for publishing
-        *
-        * Repackages keyframes into a geometry_msgs::PoseWithCovarianceStampedArray ROS message for publishing
-        */
-        void keyframes(lara_rgbd_msgs::PoseWithCovarianceStampedArray& keyframes);
+        inline void pose_and_covariance(Eigen::VectorXf& pose_vector, Eigen::MatrixXf& pose_covariance)
+        {
+            pose_vector = state_estimate_.head(7);
+            pose_covariance = cov_state_estimate_.block(0,0,7,7);
+        }
+
+        void augment_state_vector();
 
     private:
         /*!
@@ -129,16 +98,9 @@ class StateEstimator
         *
         * Performs state vector augmentation using current pose, as described in LARA RGB-D SLAM
         */
-        void augment_state_vector_();
 
         Eigen::VectorXf state_estimate_;       /**< State vector for LARA RGB-D SLAM  */
         Eigen::MatrixXf cov_state_estimate_;   /**< State vector covariance matrix for LARA RGB-D SLAM  */
-
-        int num_keyframes_;                                     /**< Number of keyframes added to history */
-        std::vector< Eigen::VectorXf > keyframes_pose_;         /**< State vector for keyframes */
-        std::vector< Eigen::MatrixXf > keyframes_cov_;          /**< Covariance matrix for keyframes */
-        //std::vector< pcl::PointCloud<pcl::PointXYZRGB> > keyframes_cloud_;    /**< Feature cloud for keyframes */
-        //std::vector< pcl::KdTreeFLANN<pcl::PointXYZRGB> > keyframes_kdtree_;   /**< Feature kdtree for keyframes */
 };
 
 #endif  // LARA_RGBD_STATE_ESTIMATOR_H_
