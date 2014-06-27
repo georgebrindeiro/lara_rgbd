@@ -20,38 +20,53 @@ bool MapManager::match(Eigen::VectorXf& pose_vector, Eigen::MatrixXf& pose_covar
     // This stores the biggest number of point matches with past clouds
     int max_matches = 0;
 
-    pcl::PointCloud<pcl::PFHRGBSignature250>::ConstPtr current_cloud(new pcl::PointCloud<pcl::PFHRGBSignature250>(feature_cloud));
+    pcl::PointCloud<pcl::PFHRGBSignature250>::ConstPtr current_feature(new pcl::PointCloud<pcl::PFHRGBSignature250>(feature_cloud));
+    pcl::PointCloud<pcl::PointWithScale>::ConstPtr current_keypoint(new pcl::PointCloud<pcl::PointWithScale>(keypoint_cloud));
 
     pcl::registration::CorrespondenceEstimation<pcl::PFHRGBSignature250, pcl::PFHRGBSignature250> est;
-    est.setInputSource(current_cloud);
+    est.setInputSource(current_feature);
+
+    pcl::registration::CorrespondenceRejectorSampleConsensus<pcl::PointWithScale> rej;
+    rej.setInputSource(current_keypoint);
+    rej.setInlierThreshold(0.05);
+    rej.setMaximumIterations(300*300);
 
     for(int i = 0; i < num_keyframes_; i++)
     {
-        pcl::PointCloud<pcl::PFHRGBSignature250>::ConstPtr past_cloud(new pcl::PointCloud<pcl::PFHRGBSignature250>(keyframes_features_[i]));
+        pcl::PointCloud<pcl::PFHRGBSignature250>::ConstPtr past_feature(new pcl::PointCloud<pcl::PFHRGBSignature250>(keyframes_features_[i]));
+        pcl::PointCloud<pcl::PointWithScale>::ConstPtr past_keypoint(new pcl::PointCloud<pcl::PointWithScale>(keyframes_keypoints_[i]));
 
         // Correspondence Estimation. if: not enough, next keyframe
-        // This should be done using descriptor matching... right now we're comparing sift keypoints
         pcl::Correspondences all_correspondences;
-        est.setInputTarget(past_cloud);
+        est.setInputTarget(past_feature);
         est.determineReciprocalCorrespondences(all_correspondences);
-
-        int num_matches = all_correspondences.size();
-
-        if(num_matches > max_matches)
-        {
-            max_matches = num_matches;
-            std::cout << "Max matches: " << max_matches << " at keyframe #" << i << std::endl;
-        }
 
         // Correspondence Rejection.
         // This should be done using RANSAC
+        pcl::Correspondences remaining_correspondences;
+        rej.setInputTarget(past_keypoint);
+        rej.getRemainingCorrespondences(all_correspondences, remaining_correspondences);
+
+        // Check if max matches
+        int est_matches = all_correspondences.size();
+        int rej_matches = remaining_correspondences.size();
+
+        std::cout << "Estimated matches: " << est_matches << " at keyframe #" << i << std::endl;
+        std::cout << "Remaining matches: " << rej_matches << " at keyframe #" << i << std::endl;
+
+        if(rej_matches > max_matches)
+        {
+            max_matches = rej_matches;
+            std::cout << "Max matches: " << max_matches << " at keyframe #" << i << std::endl;
+        }
+
     }
 
     if(max_matches < 100 || num_keyframes_ == 0)
     {
         // Generate kdtree for feature cloud
         pcl::search::KdTree<pcl::PFHRGBSignature250> feature_kdtree;
-        feature_kdtree.setInputCloud(current_cloud);
+        feature_kdtree.setInputCloud(current_feature);
 
         // Store keyframe
         keyframes_pose_.push_back(pose_vector);

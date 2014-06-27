@@ -25,6 +25,7 @@
 // kdtree search
 #include <pcl/search/kdtree.h>
 #include <pcl/registration/correspondence_estimation.h>
+#include <pcl/registration/correspondence_rejection_sample_consensus.h>
 
 #include <lara_rgbd_msgs/PoseWithCovarianceStampedArray.h>
 
